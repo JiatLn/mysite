@@ -1,0 +1,1 @@
+default_app_config = 'read_counter.apps.ReadCounterConfig'

@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    /*margin-top: 66px !important;*/
+    overflow-x: hidden;
+    background-color: transparent;
+}
+
+
+/*reset bootstrap*/
+.navbar-default {
+    border: transparent;
+}
+
+.navbar-right {
+    margin-right: 0;
+}
+
+
+.panel-default > .panel-heading {
+    background-color: rgba(255, 181, 181, 0.075);
+}
+
+
+
+ul li {
+    list-style-type: none;
+}
+
+
+
+
+
+
+
+
+.banner {
+    height: 300px;
+    margin: 3.6em 0 2em 0;
+    background: url('../img/Free Arabian Nights Vector Illustration.jpg') no-repeat;
+    display: flex;
+    
+
+}
+
+
+.banner h1 {
+    margin: auto;
+    color: #fff;
+    font-family: 'YouYuan';
+    text-align: center;
+    line-height: 160%;
+    text-shadow: 1px 1px 2px #000;
+}
+
+
+
+
+
+
+
+
+
+
+/*放置网页footer(flex写法)*/
+body {
+    display: flex;
+    min-height: 200vh;
+    flex-direction: column;
+}
+#main {
+    flex: 1;
+}
+
+
+/*回到顶部*/
+#toTop {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    bottom: 40px;
+    right: 16px;
+    line-height: 350%;
+    background-color: #d1a6b7;
+    border-radius: 10%;
+    text-align: center;
+    
+}
+
+#toTop i {
+    color: #fff;
+}
+
+#toTop:hover {
+    background-color: rgba(255,100,97,0.1);
+    cursor: pointer;
+}
+
+#toTop:hover > i{
+    color: #d1a6b7;
+}

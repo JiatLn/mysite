@@ -1,0 +1,15 @@
+{% extends "blog/blog_list.html" %}
+
+
+{% block title %}博文分类 - {{ blog_type.type_name }}{% endblock title %}
+
+
+{% block blog_list_title %}
+	分类：{{ blog_type.type_name }}
+	<a class="pull-right" href="{% url 'blog_list' %}">查看所有</a>
+
+{% endblock blog_list_title %}
+
+
+
+

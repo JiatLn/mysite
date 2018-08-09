@@ -1,0 +1,128 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="icon" sizes="128x128" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    {% block header_extends %}{% endblock header_extends %}
+
+</head>
+<body>
+
+
+<header>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" style="color: #6f5499;" href="/">JiatLn</a>
+            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="{% block nav_home_active %}{% endblock %}"><a href="{% url 'home' %}"><i class="fa fa-home fa-lg fa-fw" aria-hidden="true"></i></a></li>
+                <li class="{% block nav_blog_active %}{% endblock %}"><a href="{% url 'blog_list' %}"><i class="fa fa-book fa-lg fa-fw" aria-hidden="true"></i></a></li>
+                
+            </ul>
+            <!--ul class="nav navbar-nav navbar-right">
+                <li><a href="/login"><i class="fa fa-sign-in fa-lg fa-fw" aria-hidden="true"></i></a></li>
+            </ul-->
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">你好，{{ user.username }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'info' %}">个人资料</a></li>
+                            {% if user.is_staff or user.is_superuser %}
+                                <li><a href="{% url 'admin:index' %}" target="_blank">后台管理</a></li>
+                            {% endif %}
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{% url 'logout' %}?from={{ request.get_full_path }}">注销</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}?from={{ request.get_full_path }}">登录</a></li>
+                    <li><a href="{% url 'register' %}?from={{ request.get_full_path }}">注册</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% block banner %}
+    <div class="banner hidden-xs">
+        <h1>剑阁峥嵘而崔嵬，<br>一夫当关，万夫莫开。</h1>
+    </div>
+    <br><br>
+{% endblock banner %}
+</header>
+
+<!-- Modal -->
+<div class="modal fade" id="login-model" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <form id="login_modal_form" action="" method="POST">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">请先登录</h4>
+            </div>
+            <div class="modal-body">
+                {% csrf_token %}
+                {% for field in login_modal_form %}
+                    <div class="form-group">
+                        {# <label for="{{ field.id_for_label }}">{{ field.label }}</label> #}
+                        {{ field }}
+                        <p class="text-danger">{{ field.errors.as_text }}</p>
+                    </div>
+                {% endfor %}
+                <span id="login_modal_tip" class="text-danger"></span>
+                <!--div style="clear: both"></div>
+                <a class="pull-right" href="">忘记密码？</a-->
+            </div>
+            <div class="modal-footer">
+                <button type="sumbit" class="btn btn-primary pull-left">登录</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+<section id="main">
+    {% block content %}{% endblock content %}
+</section>
+
+<footer class="container">
+{% block footer %}
+    <hr>
+    <ul class="list-inline pull-right">
+        <li style="color: rgba(40,40,40,.4);">&copy; JiatLn 2018.</li>
+        <li><a href="https://github.com/JiatLn" target="_blank">GitHub</a></li>
+        <li><a href="https://www.zhihu.com/people/lin-jia-tao-75" target="_blank">ZhiHu</a></li>
+        <li><a href="mailto:lne128gene980@163.com" target="_blank">Email</a></li>
+    </ul>
+    <div id="toTop" class="hidden">
+        <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
+    </div>
+{% endblock footer %}
+</footer>
+
+
+</body>
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script type="text/javascript" src="{% static 'bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+
+{% block script_extends %}{% endblock script_extends %}
+
+</html>

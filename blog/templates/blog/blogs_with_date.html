@@ -1,0 +1,11 @@
+{% extends "blog/blog_list.html" %}
+
+
+{% block title %}博文归档 - {{ blog_date }}{% endblock title %}
+
+
+{% block blog_list_title %}
+	发表时间：{{ blog_date }}
+	<a class="pull-right" href="{% url 'blog_list' %}">查看所有</a>
+
+{% endblock blog_list_title %}

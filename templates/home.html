@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}JiatLn's Blog{% endblock title %}
+{% block nav_home_active %}active{% endblock nav_home_active %}
+
+
+
+
+{% block header_extends %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    {# https://www.hcharts.cn/docs/start-helloworld #}
+    <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+{% endblock header_extends %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-1">
+            <!-- 图表容器 DOM -->
+            <div id="container" style="width: 600px;height:400px;"></div>
+        </div>
+        <aside class="col-sm-4 col-sm-offset-1">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#today-hot" data-toggle="tab">24小时热门</a></li>
+                <li><a href="#yesterday-hot" data-toggle="tab">昨日热门</a></li>
+                <li><a href="#seven-days-hot" data-toggle="tab">近7日热门</a></li>
+            </ul>
+            <div class="tab-content hot-article">
+                <!-- 24小时内的热门 -->
+                <div class="tab-pane active" id="today-hot">
+                    <ul class="hot-data">
+                        {% for data in today_hot_data %}
+                            <li><a href="{% url 'blog_detail' data.content_object.pk %}">{{ data.content_object.title }}</a></li>
+                        {% empty %}
+                            <li>今日暂无热门。</li>
+                        {% endfor %}
+                    </ul>    
+                </div>
+                <div class="tab-pane" id="yesterday-hot">
+                    <ul class="hot-data">
+                        {% for data in yesterday_hot_data %}
+                            <li><a href="{% url 'blog_detail' data.content_object.pk %}">{{ data.content_object.title }}</a></li>
+                        {% empty %}
+                            <li>昨日暂无热门。</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="tab-pane" id="seven-days-hot">
+                    <ul class="hot-data">
+                        {% for hot_blog in seven_days_hot_blogs %}
+                            <li><a href="{% url 'blog_detail' hot_blog.id %}">{{ hot_blog.title }}</a></li>
+                        {% empty %}
+                            <li>一周暂无热门。</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="friend-links">
+                <h4><i class="fa fa-link" aria-hidden="true"></i> 友情链接</h4>
+                <ul>
+                    <li><a href="http://jcsmallming.top./" target="_blank">据传说</a></li>
+                    <li><a href="http://jiatln.pythonanywhere.com/" target="_blank">JiatLn</a></li>
+                    <li><a href="http://rex-huang61.cn/" target="_blank">Rex</a></li>
+                    <li><a href="http://yshblog.com/" target="_blank">ysh</a></li>
+                    <li><a href="https://www.yezismile.com/" target="_blank">叶子</a></li>
+                    <!-- <li><a href="" target="_blank">敬请期待</a></li> -->
+                </ul>
+            </div>
+        </aside>
+    </div>
+</div>
+{% endblock content %}
+
+{% block script_extends %}
+    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+    <script>
+        // 图表配置
+        var options = {
+            chart: { type: 'line' },
+            title: { text: null },
+            xAxis: {
+                categories: {{ dates|safe }},
+                tickmarkPlacement: 'on',
+                title: { text: '7天内阅读量变化' }
+            },
+            yAxis: {
+                title: { text: null },
+                labels: { enabled: false },
+                gridLineDashStyle: 'Dash',
+            },
+            series: [{                                         
+                name: '阅读量',
+                data: {{ read_nums }}
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: { enabled: true }
+                }
+            },
+            legend: { enabled: false },
+            credits: { enabled: false },
+        };
+        // 图表初始化函数
+        var chart = Highcharts.chart('container', options);
+    </script>
+{% endblock script_extends %}

@@ -1,0 +1,43 @@
+
+
+
+#container {
+    margin: 0 auto;
+    padding-bottom: 4em;
+    height: 20em;
+    max-width: 30em;
+    min-width: 20em;
+}
+
+
+
+
+/*热门文章*/
+.hot-article {
+    min-height: 180px;
+}
+
+.hot-data {
+    margin: 2em 0 0 2em;
+}
+
+/*友情链接*/
+.friend-links {
+}
+
+.friend-links h4 {
+    margin: 0 0 0.8em 1em;
+    display: block;
+    padding: 0 0 0.4em 0.6em;
+    border-bottom: 2px solid #789;
+}
+
+.friend-links ul {
+    margin-left: 3em;
+}
+
+.friend-links li {
+    float: left;
+    margin-right: 1.6em;
+    line-height: 180%;
+}
