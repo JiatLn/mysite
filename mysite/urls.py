@@ -19,6 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 
+from django.conf.urls import url, include
+
 
 from . import views
 
@@ -26,11 +28,13 @@ urlpatterns = [
 	# index
 	path('', views.home, name='home'),
     path('admin/', admin.site.urls),
-    path('ckeditor', include('ckeditor_uploader.urls')),
     path('blog/', include('blog.urls'), name='blog'),
-    path('comment/', include('comment.urls'), name='comment'),
     path('likes/', include('likes.urls'), name='likes'),
-    path('user/', include('user.urls'), name='user'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += [
+    url(r'mdeditor/', include('mdeditor.urls'))
+]

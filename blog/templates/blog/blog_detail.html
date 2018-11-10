@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load comment_tags %}
 {% load likes_tags %}
 
 {% block title %}{{ blog.title }}{% endblock title %}
@@ -8,122 +7,50 @@
 
 
 {% block header_extends %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/blog/blog.css' %}">
-    {# django-ckeditor #}
-    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
-    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/blog/blog.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/editormd.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/code.css' %}">
 {% endblock header_extends %}
 
 
-{% block banner %}
-<br><br><br><br>
-{% endblock banner %}
+{% block banner %}{% endblock banner %}
 
 
 {% block content %}
-<div class="container">
-    <div class="row col-xs-10 col-xs-offset-1">
-        <h3>{{ blog.title }}</h3>
-        <ul class="blog-info-desc">
-            <li><i class="fa fa-user-o" aria-hidden="true"></i> {{ blog.author }}</li>
-            <li><i class="fa fa-tag" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a></li>
-            <li><i class="fa fa-clock-o" aria-hidden="true"></i> {{ blog.created_time|date:'Y-m-d H:i:s' }}</li>
-            <li>阅读({{ blog.get_read_num }})</li>
-            <li>评论({% get_comment_count blog %})</li>
-        </ul>
-        <article class="blog-content">{{ blog.content|safe }}</article>
-        <p class="like pull-right" onclick="likeChange(this, '{% get_content_type blog %}', {{ blog.pk }})">
-            <i class="fa fa-heart-o {% get_like_status blog %}" aria-hidden="true"></i>
-            <span class="like-num">{% get_like_count blog %}</span>
-            <span>喜欢</span>
-        </p>
-        <div class="blog-more">
-            {% if perivous_blog %}
-                <p>上一篇：<a href="{% url 'blog_detail' perivous_blog.pk %}">{{ perivous_blog.title }}</a></p>
-            {% else %}
-                <p>上一篇：没有了。</p>
-            {% endif %}
-            {% if next_blog %}
-                <p>下一篇：<a href="{% url 'blog_detail' next_blog.pk %}">{{ next_blog.title }}</a></p>
-            {% else %}
-                <p>下一篇：没有了</p>
-            {% endif %}
-        </div>
-    </div>
-    <div class="row col-xs-10 col-xs-offset-1">
-        <div class="comment-area">
-            <h3 class="comment-area-title">发表评论</h3>
-            {% if user.is_authenticated %}
-                <label for="comment-text">Hi，{{ user.username }}。</label>
-                <form id="comment_form" action="{% url 'update_comment' %}" method="POST">
-                    <div id="reply_content_container" style="display: none;">
-                        <p class="text-primary">回复：</p>
-                        <div id="reply_content"></div>
-                    </div>
 
-                    {% csrf_token %}
-                    {% get_comment_form blog as comment_form %}
-                    {% for field in comment_form %}
-                        <div class="form-group">
-                            {{ field }}
-                        </div>
-                    {% endfor %}
-                    <span class="text-danger" id="comment_error"></span>
-                    <input type="submit" class="btn btn-primary pull-right" value="评论">
-                </form>
-            {% else %}
-                <p>您尚未登录，登录后方可评论~点击
-                    <a href="{% url 'login' %}?from={{ request.get_full_path }}">登录</a>
-                    或
-                    <a href="{% url 'register' %}?from={{ request.get_full_path }}">注册</a>
-                </p>
-            {% endif %}
+<h4>{{ blog.title }}</h4>
+<ul class="blog-info-desc">
+    <li><i class="fa fa-user-o" aria-hidden="true"></i> {{ blog.author }}</li>
+    <li><i class="fa fa-tag" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}#banner">{{ blog.blog_type }}</a></li>
+    <li><i class="fa fa-clock-o" aria-hidden="true"></i> {{ blog.created_time|date:'Y-m-d H:i:s' }}</li>
+    <li class="like pull-right" onclick="likeChange(this, '{% get_content_type blog %}', {{ blog.pk }})">
+        <i class="fa fa-heart-o {% get_like_status blog %}" aria-hidden="true"></i>
+        <span class="like-num">{% get_like_count blog %}</span>
+        <span>喜欢</span>
+    </li>
+</ul>
+
+<article class="blog-content">
+    <div class="row">
+        <div class="col s12 m9 l9">
+            <div class="markdown-body">{{ blog.content|safe }}</div>
         </div>
     </div>
-    <div class="row col-xs-10 col-xs-offset-1">
-        <div class="comment-area">
-            <h3 class="comment-area-title">评论列表</h3>
-            <ul id="comment_list">
-                {% get_comments blog as comments %}
-                {% for comment in comments %}
-                <li id="root_{{ comment.pk }}" class="comment">
-                    <span>{{ comment.user }}</span>
-                    <div id="comment_{{ comment.pk }}">
-                        {{ comment.text|safe }}
-                    </div>
-                    <time>{{ comment.comment_time|date:'Y-m-d H:i' }}</time>
-                    <p class="like" onclick="likeChange(this, '{% get_content_type comment %}', {{ comment.pk }})">
-                        <i class="fa fa-thumbs-o-up {% get_like_status comment %}" aria-hidden="true"></i>
-                        <span class="like-num">{% get_like_count comment %}</span>
-                    </p>
-                    <a href="javascript:reply({{ comment.pk }});">回复</a>
-                    <ul class="reply-list">
-                        {% for reply in comment.root_comment.all %}
-                        <li class="reply">
-                            <span>{{ reply.user }}</span>
-                            <span>回复 @{{ comment.user }}：</span>
-                            <div id="comment_{{ reply.pk }}">{{ reply.text|safe }}</div>
-                            <time>{{ reply.comment_time|date:'Y-m-d H:i' }}</time>
-                            <p class="like" onclick="likeChange(this, '{% get_content_type reply %}', {{ reply.pk }})">
-                                <i class="fa fa-thumbs-o-up {% get_like_status reply %}" aria-hidden="true"></i>
-                                <span class="like-num">{% get_like_count reply %}</span>
-                            </p>
-                            <a href="javascript:reply({{ reply.pk }});">回复</a>
-                            <br>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                {% empty %}
-                    <span id="no_comment">暂无评论。</span>
-                {% endfor %}
-            </ul> 
-        </div>
-    </div>
+</article>
+
+<div class="blog-more">
+    {% if perivous_blog %}
+        <p>上一篇：<a href="{% url 'blog_detail' perivous_blog.pk %}">{{ perivous_blog.title }}</a></p>
+    {% else %}
+        <p>上一篇：没有了。</p>
+    {% endif %}
+    {% if next_blog %}
+        <p>下一篇：<a href="{% url 'blog_detail' next_blog.pk %}">{{ next_blog.title }}</a></p>
+    {% else %}
+        <p>下一篇：没有了</p>
+    {% endif %}
 </div>
 {% endblock content %}
-
-
 
 {% block script_extends %}
 
@@ -135,16 +62,6 @@
         }
         return str;
     };
-    function reply(reply_comment_id){
-        // 设置值
-        $('#reply_comment_id').val(reply_comment_id);
-        var html = $('#comment_' + reply_comment_id).html();
-        $('#reply_content').html(html);
-        $('#reply_content_container').show();
-        $('html').animate({scrollTop: $('#comment_form').offset().top - 60}, 300, function(){
-            CKEDITOR.instances['id_text'].focus();
-        });
-    }
     function numFormat(num) {
         return ('00' + num).substr(-2);
     }
@@ -157,77 +74,6 @@
         var minute = datetime.getMinutes();
         return year + '-' + numFormat(month) + '-' + numFormat(day) + ' ' + numFormat(hour) + ':' + numFormat(minute);
      }
-    $('#comment_form').submit(function(){
-        $('#comment_error').text('');
-        // 判断是否为空
-        if(CKEDITOR.instances['id_text'].document.getBody().getText().trim() == ''){
-            $('#comment_error').text('评论内容不能为空。');
-            return false;
-        }
-        // 更新数据到textarea
-        CKEDITOR.instances['id_text'].updateElement();
-        // 异步提交
-        $.ajax({
-            url: "{% url 'update_comment' %}",
-            type: 'POST',
-            data: $(this).serialize(),
-            cache: false,
-            success: function(data){
-                console.log(data);
-                if(data['status'] == 'SUCCESS'){
-                    // 插入数据
-                    if($('#reply_comment_id').val() == '0'){
-                        // 插入评论
-                        var comment_html = '<li id="root_{0}" class="comment">' +
-                                '<span>{1}</span>' +
-                                '<div id="comment_{0}">{2}</div>' +
-                                '<time>{3}</time> ' +
-                                '<p class="like" onclick="likeChange(this, \'{4}\', {0})">' +
-                                    '<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>' +
-                                    ' <span class="like-num">0</span>' +
-                                '</p>' +
-                                ' <a href="javascript:reply({0});">回复</a>' +
-                            '</li>';
-                        console.log(data);
-                        comment_html = comment_html.format(data['pk'], data['username'], data['text'], timeFormat(data['comment_time']), data['content_type']);
-                        // console.log(comment_html);
-                        $('#comment_list').prepend(comment_html);
-                    }else{
-                        // 插入回复
-                        var reply_html = '<li class="reply">' +
-                                '<span>{5}</span>' +
-                                '<span>回复 @{1}：</span>' +
-                                '<div id="comment_{0}">{2}</div>' +
-                                '<time>{3}</time> ' +
-                                '<p class="like" onclick="likeChange(this, \'{4}\', {0})">' +
-                                    '<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>' +
-                                    ' <span class="like-num">0</span>' +
-                                '</p>' +
-                                ' <a href="javascript:reply({0});">回复</a><br>' +
-                            '</li>';
-                        reply_html = reply_html.format(data['pk'], data['username'], data['text'], timeFormat(data['comment_time']), data['content_type'], data['reply_to']);
-                        // console.log(reply_html);
-                        $('#root_' + data['root_pk']).append(reply_html);
-                    }
-                    $('#no_comment').remove();
-                    // 清空编辑框内容
-                    CKEDITOR.instances['id_text'].setData('');
-                    $('#reply_content_container').hide();
-                    $('#reply_comment_id').val('0');
-                    $('#no_comment').remove();
-                    $('#comment_error').text('评论(回复)成功！');
-                }else{
-                    // 显示错误信息
-                    $('#comment_error').text(data['error']);
-                }
-                
-            },
-            error: function(xhr){
-                console.log(xhr);
-            },
-        });
-        return false;
-    });
     function likeChange(obj, content_type, object_id) {
         var is_like = obj.getElementsByClassName('active').length == 0;
         // console.log(is_like);
@@ -264,24 +110,9 @@
                 console.log(xhr);
             }
         });
-    }
-    $("#login_modal_form").submit(function(event){
-        event.preventDefault();
-        $.ajax({
-            url: '{% url "login_for_modal" %}',
-            type: 'POST',
-            data: $(this).serialize(),
-            cache: false,
-            success: function(data){
-                if(data['status'] == 'SUCCESS'){
-                    window.location.reload();
-                }else{
-                    $('#login_modal_tip').text('用户名或密码不正确');
-                }
-            }
-        });
-    });
+    } 
 </script>
 
-
+<script src="https://cdn.bootcss.com/marked/0.5.1/marked.min.js"></script>
+<script src="{% static 'js/editormd.min.js' %}"></script>
 {% endblock script_extends %}

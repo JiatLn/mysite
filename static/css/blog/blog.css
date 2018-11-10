@@ -26,43 +26,13 @@ ul.blog-info-desc li {
 
 article {
     border: 1px solid #fde;
-    border-radius: 1%;
+    /*border-radius: 1%;*/
     padding: 1em;
     margin-bottom: 2em;
-    min-height: 400px;
-}
-
-.comment-area {
-    margin-top: 2em;
-}
-
-.comment-area-title {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 0.4em;
+    /*min-height: 400px;*/
 }
 
 
-.comment {
-    margin-bottom: 0.5em;
-    padding-bottom: 0.5em;
-}
-
-.comment:not(:last-child) {
-    border-bottom: 1px dashed #ccc;
-}
-
-.reply {
-    margin-left: 2em;
-}
-
-
-#reply_content_container {
-    border: 1px solid #d1d1d1;
-    border-bottom: none;
-    background-color: #f8f8f8;
-    padding: 1em 1em 0.5em 1em;
-    margin: 1em 0 -1em 0;
-}
 
 
 
@@ -79,8 +49,3 @@ article {
     color: #f22;
 }
 
-
-
-.django-ckeditor-widget {
-    width: 100%;
-}

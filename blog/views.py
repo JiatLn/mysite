@@ -3,9 +3,9 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 # 第三方
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
+import markdown
 # 本地
 from .models import Blog, BlogType
-from read_counter.utils import read_counter_add
 
 
 # Create your views here.
@@ -42,7 +42,6 @@ def get_blog_list_common_data(request, blogs):
 def blog_list(request):
 
     blogs = Blog.objects.all()
-
     context = get_blog_list_common_data(request, blogs)
 
     return render(request, 'blog/blog_list.html', context)
@@ -73,7 +72,14 @@ def blogs_with_date(request, year, month):
 def blog_detail(request, blog_pk):
 
     blog = get_object_or_404(Blog, pk=blog_pk)
-    read_cookie_key = read_counter_add(request, blog)
+    blog.content = markdown.markdown(blog.content,
+                                  extensions=[
+                                     'markdown.extensions.extra',
+                                     'markdown.extensions.codehilite',
+                                     'markdown.extensions.toc',
+                                     
+                                  ])
+
 
     context = {}
     context['perivous_blog'] = Blog.objects.filter(created_time__lt=blog.created_time).first()
@@ -81,5 +87,5 @@ def blog_detail(request, blog_pk):
     context['blog'] = blog
     
     response =  render(request, 'blog/blog_detail.html', context)
-    response.set_cookie(read_cookie_key, 'true')    # 阅读cookie标记(已阅)
+
     return response
