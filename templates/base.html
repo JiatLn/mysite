@@ -20,45 +20,52 @@
 </head>
 <body>
 <main>
-<div class="container">
-    <div class="row">
-        <div class="section">
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo" style="margin-left: 2%;">OEW</a>
-                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="{% url 'home' %}">首页</a></li>
-                        <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
-                        <li><a href="">留言</a></li>
-                        <li><a href="">关于</a></li>
-                        <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
-                    </ul>
-                    <ul class="side-nav" id="mobile-demo">
-                        <li><a href="{% url 'home' %}">首页</a></li>
-                        <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
-                        <li><a href="">留言</a></li>
-                        <li><a href="">关于</a></li>
-                        <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </div>
-    {% block banner %}
-    <div class="row" id="banner">
-        <div class="col m9 s12">
-            <h1 class="center-on-small-only indigo-text text-lighten-2">Blog</h1>
-            <h5 class="center-on-small-only indigo-text text-lighten-4">JiatLn's Blog</h5>
-        </div>
-        <div class="col m3" style="margin-top: 20px;">
-            <p class="hide-on-small-only blue-text">永远年轻，永远热泪盈眶。</p>
+    {% block menu %}
+    <div class="container">
+        <div class="row">
+            <div class="section">
+                <nav>
+                    <div class="nav-wrapper">
+                        <a href="#!" class="brand-logo" style="margin-left: 2%;">OEW</a>
+                        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="{% url 'home' %}">首页</a></li>
+                            <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
+                            <li><a href="">留言</a></li>
+                            <li><a href="">关于</a></li>
+                            <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
+                        </ul>
+                        <ul class="side-nav" id="mobile-demo">
+                            <li><a href="{% url 'home' %}">首页</a></li>
+                            <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
+                            <li><a href="">留言</a></li>
+                            <li><a href="">关于</a></li>
+                            <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </div>
     </div>
     {% endblock %}
-    <div class="divider"></div>
-    {% block content %}{% endblock %}
-</div>
+
+    {% block banner %}
+    <div class="container">
+        <div class="row" id="banner">
+            <div class="col m9 s12">
+                <h1 class="center-on-small-only indigo-text text-lighten-2">Blog</h1>
+                <h5 class="center-on-small-only indigo-text text-lighten-4">JiatLn's Blog</h5>
+            </div>
+            <div class="col m3" style="margin-top: 20px;">
+                <p class="hide-on-small-only blue-text">永远年轻，永远热泪盈眶。</p>
+            </div>
+        </div>
+        <div class="divider"></div>
+    </div>
+    {% endblock %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
 </main>
 {% block footer %}
 <footer class="container">

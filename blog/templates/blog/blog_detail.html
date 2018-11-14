@@ -12,13 +12,27 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/code.css' %}">
 {% endblock header_extends %}
 
+{% block menu %}
+    <a data-activates="mobile-demo" class="menu-btn button-collapse"><i class="fa fa-bars" aria-hidden="true"></i> MENU</a>
+    <ul class="side-nav" id="mobile-demo">
+        <li><a href="{% url 'home' %}">首页</a></li>
+        <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
+        <li><a href="">留言</a></li>
+        <li><a href="">关于</a></li>
+        <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
+    </ul>
 
-{% block banner %}{% endblock banner %}
+{% endblock %}
+{% block banner %}
+<div class="banner">
+    <h4 class="center-align article-title">{{ blog.title }}</h4>
+</div>
+{% endblock banner %}
 
 
 {% block content %}
 
-<h4>{{ blog.title }}</h4>
+
 <ul class="blog-info-desc">
     <li><i class="fa fa-user-o" aria-hidden="true"></i> {{ blog.author }}</li>
     <li><i class="fa fa-tag" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}#banner">{{ blog.blog_type }}</a></li>
