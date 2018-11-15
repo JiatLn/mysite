@@ -22,33 +22,30 @@
 <main>
     {% block menu %}
     <div class="container">
-        <div class="row">
-            <div class="section">
-                <nav>
-                    <div class="nav-wrapper">
-                        <a href="#!" class="brand-logo" style="margin-left: 2%;">OEW</a>
-                        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                        <ul class="right hide-on-med-and-down">
-                            <li><a href="{% url 'home' %}">首页</a></li>
-                            <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
-                            <li><a href="">留言</a></li>
-                            <li><a href="">关于</a></li>
-                            <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
-                        </ul>
-                        <ul class="side-nav" id="mobile-demo">
-                            <li><a href="{% url 'home' %}">首页</a></li>
-                            <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
-                            <li><a href="">留言</a></li>
-                            <li><a href="">关于</a></li>
-                            <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
+        <div class="section">
+            <nav style="background: url({% static 'images/bg.jpg' %}) center center / cover no-repeat rgb(34, 34, 34); overflow: hidden;">
+                <div class="nav-wrapper">
+                    <a href="#!" class="brand-logo" style="margin-left: 2%;">OEW</a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="{% url 'home' %}">首页</a></li>
+                        <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
+                        <li><a href="">留言</a></li>
+                        <li><a href="">关于</a></li>
+                        <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
+                    </ul>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li><a href="{% url 'home' %}">首页</a></li>
+                        <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
+                        <li><a href="">留言</a></li>
+                        <li><a href="">关于</a></li>
+                        <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
     </div>
     {% endblock %}
-
     {% block banner %}
     <div class="container">
         <div class="row" id="banner">

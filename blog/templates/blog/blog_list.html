@@ -26,7 +26,7 @@
                         <p>{{ blog.content|safe|striptags|truncatechars:'120' }}</p>
                     </div>
                     <div class="card-action">
-                        <i class="fa fa-tag" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-tag" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}#banner">{{ blog.blog_type }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
                         <i class="fa fa-clock-o" aria-hidden="true"></i> {{ blog.created_time|date:'Y-m-d' }}&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                 </li>
@@ -45,30 +45,27 @@
             共有{{ blog_of_page.paginator.count }}篇文章。当前第{{ blog_of_page.number }}页，共{{ blog_of_page.paginator.num_pages }}页。
         </div>
     </div> -->
-    <div class="col l3 offset-l1 m12 s12">
-        <aside>
-            <div id="introduction" class="section scrollspy">
-                <h6><i class="fa fa-tags" aria-hidden="true"></i> 文章分类</h6>
-                <ul>
-                    {% for blog_type in blog_types %}
-                        <li class="chip"><a href="{% url 'blogs_with_type' blog_type.pk %}#banner">{{ blog_type.type_name }} ({{ blog_type.blog_count }})</a></li>
-                    {% empty %}
-                        <li>暂无分类。</li>
-                    {% endfor %}
-                </ul>
-            </div>
+    <div class="col l4 m12 s12">
+        <aside id="introduction" class="section scrollspy">
+            <div class="card-header"><strong><i class="fa fa-tags" aria-hidden="true"></i> 文章分类</strong></div>
+            <ul class="tags-list">
+                {% for blog_type in blog_types %}
+                    <li class="chip"><a href="{% url 'blogs_with_type' blog_type.pk %}#banner">{{ blog_type.type_name }} ({{ blog_type.blog_count }})</a></li>
+                {% empty %}
+                    <li>暂无分类。</li>
+                {% endfor %}
+            </ul>
         </aside>
-        <aside>
-            <div id="introduction" class="section scrollspy">
-                <h6><i class="fa fa-calendar" aria-hidden="true"></i> 日期归档</h6>
-                <ul>
-                    {% for blog_date, blog_count in blog_dates %}
-                        <li><a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}#banner">{{ blog_date|date:'Y年m月' }} ({{ blog_count }})</a></li>
-                    {% empty %}
-                        <li>暂无分类。</li>
-                    {% endfor %}
-                </ul>
-            </div>
+        <br>
+        <aside id="introduction" class="section scrollspy">
+            <div class="card-header"><strong><i class="fa fa-calendar" aria-hidden="true"></i> 日期归档<strong></div>
+            <ul class="tags-list">
+                {% for blog_date, blog_count in blog_dates %}
+                    <li><a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}#banner">{{ blog_date|date:'Y年m月' }} ({{ blog_count }})</a></li>
+                {% empty %}
+                    <li>暂无分类。</li>
+                {% endfor %}
+            </ul>
         </aside>
     </div>
 </div>
