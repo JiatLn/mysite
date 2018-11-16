@@ -25,11 +25,12 @@ from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
-	# index
-	path('', views.home, name='home'),
+    # index
+    path('', views.home, name='home'),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls'), name='blog'),
     path('likes/', include('likes.urls'), name='likes'),
+    path('about', views.about, name='about'),
 
 ]
 

@@ -19,6 +19,7 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
+<canvas id="canvas"></canvas>
 <main>
     {% block menu %}
     <div class="container">
@@ -30,15 +31,15 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{% url 'home' %}">首页</a></li>
                         <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
-                        <li><a href="">留言</a></li>
-                        <li><a href="">关于</a></li>
+                        <li><a href="" onclick="alert('施工中..x.x')">留言</a></li>
+                        <li><a href="{% url 'about' %}">关于</a></li>
                         <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <li><a href="{% url 'home' %}">首页</a></li>
                         <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
-                        <li><a href="">留言</a></li>
-                        <li><a href="">关于</a></li>
+                        <li><a href="" onclick="alert('施工中..x.x')">留言</a></li>
+                        <li><a href="{% url 'about' %}">关于</a></li>
                         <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
                     </ul>
                 </div>
@@ -50,8 +51,8 @@
     <div class="container">
         <div class="row" id="banner">
             <div class="col m9 s12">
-                <h1 class="center-on-small-only indigo-text text-lighten-2">Blog</h1>
-                <h5 class="center-on-small-only indigo-text text-lighten-4">JiatLn's Blog</h5>
+                <h2 class="header center-on-small-only blue-text text-lighten-3" style="margin: 4% 0 0 4%;">JiatLn</h2>
+                <h5 class="light blue-text text-lighten-4 center-on-small-only" style="margin: 4% 0 0 4%;">O ever youthful, O ever weeping.</h5>
             </div>
             <div class="col m3" style="margin-top: 20px;">
                 <p class="hide-on-small-only blue-text">永远年轻，永远热泪盈眶。</p>

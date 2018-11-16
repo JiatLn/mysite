@@ -17,3 +17,21 @@
 .friend-links {
 }
 
+
+
+/*右边的tabs*/
+.tab-content {
+	background: #fff;
+	width: 100%;
+	min-height: 200px;
+}
+
+aside {
+    background-color: #fff;
+    margin : 5% 3% 0 0;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
+}
+
+.tabs {
+	overflow-x: hidden;
+}

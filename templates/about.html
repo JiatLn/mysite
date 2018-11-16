@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}关于 - JiatLn's Blog{% endblock title %}
+
+
+
+{% block header_extends %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/editormd.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
+{% endblock header_extends %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col l8 m12 s12">
+        <div class="about">
+            <h5>关于本站</h5>
+            <div class="divider"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block script_extends %}
+<script src="https://cdn.bootcss.com/marked/0.5.1/marked.min.js"></script>
+<script src="{% static 'js/editormd.min.js' %}"></script>
+{% endblock script_extends %}
+
+
+
+

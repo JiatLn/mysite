@@ -9,43 +9,40 @@
 {% block header_extends %}
     {# https://www.hcharts.cn/docs/start-helloworld #}
     <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 {% endblock header_extends %}
 
 
 {% block content %}
-    <div class="row">
-        <div class="col m6">
-            <div class="carousel">
-                <a class="carousel-item" href="#one!"><img src="http://www.materializecss.cn/images/nature/lorempixel1.jpg"></a>
-                <a class="carousel-item" href="#two!"><img src="http://www.materializecss.cn/images/nature/lorempixel2.jpg"></a>
-                <a class="carousel-item" href="#three!"><img src="http://www.materializecss.cn/images/nature/lorempixel3.jpg"></a>
-                <a class="carousel-item" href="#four!"><img src="http://www.materializecss.cn/images/nature/lorempixel4.jpg"></a>
-                <a class="carousel-item" href="#five!"><img src="http://www.materializecss.cn/images/nature/lorempixel5.jpg"></a>
-            </div>
-        </div>
-        <div class="col m4 offset-m2">
-            <div class="row">
-              <ul class="tabs tabs-fixed-width">
-                <li class="tab col s3"><a href="#test1">近期文章</a></li>
-                <li class="tab col s3"><a href="#test2">标题2</a></li>
-                <li class="tab col s3"><a href="#test3">标题3</a></li>
-              </ul>
-            </div>
-            <div class="row">
-                <div id="test1" class="col">
-                    {% for blog in recent_blogs %}
-                        <p><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></p>
-                    {% endfor%}
+<div class="row">
+    <div class="col m7">
+        <!-- <h5 class="text-center">\(^o^)/~首页开发中，敬请期待</h5> -->
+    </div>
+    <div class="col m4 offset-m1">
+        <div class="row">
+            <aside>  
+                <ul class="tabs tabs-fixed-width">
+                    <li class="tab col s3"><a href="#test1">近期文章</a></li>
+                    <li class="tab col s3"><a href="#test2">标题2</a></li>
+                    <li class="tab col s3"><a href="#test3">标题3</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="test1" class="col">
+                        {% for blog in recent_blogs %}
+                            <p><a href="{% url 'blog_detail' blog.pk %}">{{ counter }}{{ blog.title }}</a></p>
+                        {% endfor%}
+                    </div>
+                    <div id="test2" class="col">
+                        <p>踩踩踩</p>
+                    </div>
+                    <div id="test3" class="col">
+                        <p>踩踩踩</p>
+                    </div>
                 </div>
-                <div id="test2" class="col">
-                    <p>踩踩踩</p>
-                </div>
-                <div id="test3" class="col">
-                    <p>踩踩踩</p>
-                </div>
-            </div>
+            </aside>
         </div>
     </div>
+</div>
 {% endblock content %}
 
 {% block script_extends %}

@@ -10,6 +10,7 @@ from blog.models import Blog
 
 
 
+
 def home(request):
     context = {}
     recent_blogs = Blog.objects.all().order_by('-last_updated_time')[:5]
@@ -18,3 +19,7 @@ def home(request):
 
 
 
+
+def about(request):
+    context = {}
+    return render(request, 'about.html', context)
