@@ -19,12 +19,12 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-<canvas id="canvas"></canvas>
+<canvas id="canvas" class="hide-on-small-only"></canvas>
 <main>
     {% block menu %}
     <div class="container">
         <div class="section">
-            <nav style="background: url({% static 'images/bg.jpg' %}) center center / cover no-repeat rgb(34, 34, 34); overflow: hidden;">
+            <nav>
                 <div class="nav-wrapper">
                     <a href="#!" class="brand-logo" style="margin-left: 2%;">OEW</a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>

@@ -6,8 +6,9 @@ from django.utils import timezone
 from django.db.models import Sum
 from django.core.cache import cache
 
-from blog.models import Blog
+import markdown
 
+from blog.models import Blog
 
 
 
@@ -22,4 +23,12 @@ def home(request):
 
 def about(request):
     context = {}
+    about = Blog.objects.get(title='关于本站')
+    about.content = markdown.markdown(about.content,
+                                  extensions=[
+                                     'markdown.extensions.extra',
+                                     'markdown.extensions.codehilite',
+                                     'markdown.extensions.toc',
+                                  ])
+    context['about'] = about
     return render(request, 'about.html', context)

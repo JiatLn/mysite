@@ -31,6 +31,7 @@ article {
     padding: 1em;
     margin-bottom: 2em;
     /*min-height: 400px;*/
+    padding-bottom: 200px;
 }
 
 
@@ -127,4 +128,11 @@ aside {
 
 .tags-list {
     margin-left: 8%;
+}
+
+
+
+/*toc*/
+.toc {
+    margin-left: 60px;
 }

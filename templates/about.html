@@ -8,6 +8,7 @@
 
 {% block header_extends %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/editormd.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/code.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
 {% endblock header_extends %}
 
@@ -17,13 +18,10 @@
 
 <div class="row">
     <div class="col l8 m12 s12">
-        <div class="about">
-            <h5>关于本站</h5>
-            <div class="divider"></div>
-            <p>基于Django2.0</p>
-        </div>
+        <div class="markdown-body card-panel">{{ about.content|safe }}</div>
     </div>
 </div>
+
 {% endblock content %}
 
 {% block script_extends %}

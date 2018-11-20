@@ -41,12 +41,3 @@ aside {
 
 
 
-.tri {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border-width: 4px;
-    border-style: solid;
-    border-color: transparent transparent transparent #26a69a;
-    margin-right: 3%;
-}

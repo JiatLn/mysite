@@ -23,7 +23,7 @@
                 <li class="card hoverable" style="opacity: 0;">
                     <div class="card-content">
                         <h5><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h5>
-                        <p>{{ blog.content|safe|striptags|truncatechars:'120' }}</p>
+                        <p>{{ blog.content|safe|striptags|truncatechars:'200' }}</p>
                     </div>
                     <div class="card-action">
                         <i class="fa fa-tag" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}#banner">{{ blog.blog_type }}</a>&nbsp;&nbsp;&nbsp;&nbsp;

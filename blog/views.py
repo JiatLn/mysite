@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.utils.text import slugify
 # 第三方
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 import markdown
+from markdown.extensions.toc import TocExtension
 # 本地
 from .models import Blog, BlogType
 
@@ -42,6 +44,14 @@ def get_blog_list_common_data(request, blogs):
 def blog_list(request):
 
     blogs = Blog.objects.all()
+    for blog in blogs:
+        blog.content = markdown.markdown(blog.content,
+                                  extensions=[
+                                     'markdown.extensions.extra',
+                                     'markdown.extensions.codehilite',
+                                     'markdown.extensions.toc',
+                                     
+                                  ])
     context = get_blog_list_common_data(request, blogs)
 
     return render(request, 'blog/blog_list.html', context)
@@ -72,19 +82,19 @@ def blogs_with_date(request, year, month):
 def blog_detail(request, blog_pk):
 
     blog = get_object_or_404(Blog, pk=blog_pk)
-    blog.content = markdown.markdown(blog.content,
-                                  extensions=[
-                                     'markdown.extensions.extra',
-                                     'markdown.extensions.codehilite',
-                                     'markdown.extensions.toc',
-                                     
-                                  ])
-
+    md = markdown.Markdown(extensions=[
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        'markdown.extensions.toc',
+        TocExtension(slugify=slugify),
+    ])
+    blog.content = md.convert(blog.content)
 
     context = {}
     context['perivous_blog'] = Blog.objects.filter(created_time__lt=blog.created_time).first()
     context['next_blog'] = Blog.objects.filter(created_time__gt=blog.created_time).last()
     context['blog'] = blog
+    context['toc'] = md.toc
     
     response =  render(request, 'blog/blog_detail.html', context)
 
