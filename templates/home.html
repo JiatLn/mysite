@@ -18,29 +18,32 @@
     <div class="col m7">
         <!-- <h5 class="text-center">\(^o^)/~首页开发中，敬请期待</h5> -->
     </div>
-    <div class="col m4 offset-m1">
-        <div class="row">
-            <aside>  
-                <ul class="tabs tabs-fixed-width">
-                    <li class="tab col s3"><a href="#test1">近期文章</a></li>
-                    <li class="tab col s3"><a href="#test2">标题2</a></li>
-                    <li class="tab col s3"><a href="#test3">标题3</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div id="test1" class="col">
-                        {% for blog in recent_blogs %}
-                            <p><a href="{% url 'blog_detail' blog.pk %}">{{ counter }}{{ blog.title }}</a></p>
-                        {% endfor%}
-                    </div>
-                    <div id="test2" class="col">
-                        <p>踩踩踩</p>
-                    </div>
-                    <div id="test3" class="col">
-                        <p>踩踩踩</p>
-                    </div>
+    <div class="col s12 m6 l4 offset-l1">
+        <aside>  
+            <ul class="tabs tabs-fixed-width">
+                <li class="tab col s3"><a href="#test1">近期文章</a></li>
+                <li class="tab col s3"><a href="#test2">公众号</a></li>
+                <li class="tab col s3"><a href="#test3">更多..</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="test1" class="col s12">
+                    {% for blog in recent_blogs %}
+                        <p><span class="tri"></span><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></p>
+                    {% endfor%}
                 </div>
-            </aside>
-        </div>
+                <div id="test2" class="col">
+                    <img width="180" style="text-align: center;" src="{% static 'images/qrcode.jpg' %}">
+                </div>
+                <div id="test3" class="col">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+            </div>
+        </aside>
     </div>
 </div>
 {% endblock content %}

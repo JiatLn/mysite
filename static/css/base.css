@@ -1,5 +1,5 @@
 body {
-    background-color: #f4f4f4;
+    background-color: #f6f4f1;
     /*background: url(../images/bgi.jpg) center center / cover no-repeat rgb(34, 34, 34);*/
 }
 
@@ -7,6 +7,13 @@ body {
 body::-webkit-scrollbar { width: 0 !important }
 body { -ms-overflow-style: none; }
 body { overflow: -moz-scrollbars-none; }
+
+
+
+
+a:hover {
+    opacity: 0.78;
+}
 
 
 .container {
@@ -21,7 +28,6 @@ body { overflow: -moz-scrollbars-none; }
     height: 200px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
 }
-
 
 
 

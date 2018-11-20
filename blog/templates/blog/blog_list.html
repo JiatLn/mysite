@@ -58,14 +58,21 @@
         </aside>
         <br>
         <aside id="introduction" class="section scrollspy">
-            <div class="card-header"><strong><i class="fa fa-calendar" aria-hidden="true"></i> 日期归档<strong></div>
-            <ul class="tags-list">
+            <div class="card-header"><i class="fa fa-calendar" aria-hidden="true"></i> 日期归档</div>
+            <!-- <ul class="tags-list">
                 {% for blog_date, blog_count in blog_dates %}
-                    <li><a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}#banner">{{ blog_date|date:'Y年m月' }} ({{ blog_count }})</a></li>
+                    <li><a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}#banner">{{ blog_date|date:'Y年m月' }} ({{ blog_count }})</a><span class="new badge">{{ blog_count }}</span></li>
                 {% empty %}
                     <li>暂无分类。</li>
                 {% endfor %}
-            </ul>
+            </ul> -->
+            <div class="collection">
+                {% for blog_date, blog_count in blog_dates %}
+                    <a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}#banner"" class="collection-item"><span class="badge">{{ blog_count }}</span>{{ blog_date|date:'Y年m月' }}</a>
+                {% empty %}
+                    <li>暂无分类。</li>
+                {% endfor %}
+            </div>
         </aside>
     </div>
 </div>
