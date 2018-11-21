@@ -24,8 +24,8 @@ def counter_once_read(request, obj):
             client_ip = client_ip.split(",")[0]  # 所以这里是真实的ip
         else:
             client_ip = request.META['REMOTE_ADDR']  # 这里获得代理ip
-        username = request.META['USERNAME']
-        read_detail = ReadDetail(ip=client_ip, username=username)
+        # username = request.META['USERNAME']
+        read_detail = ReadDetail(ip=client_ip, username='游客')
         read_detail.save()
 
     return key
