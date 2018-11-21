@@ -10,7 +10,7 @@ class BlogTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'blog_type', 'author', 'created_time', 'last_updated_time')
+    list_display = ('id', 'title', 'get_read_num', 'blog_type', 'author', 'created_time', 'last_updated_time')
     list_display_links = ('title',)
     list_filter = ('blog_type', 'created_time')
 

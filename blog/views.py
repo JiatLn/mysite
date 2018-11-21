@@ -8,6 +8,7 @@ import markdown
 from markdown.extensions.toc import TocExtension
 # 本地
 from .models import Blog, BlogType
+from read_counter.utils import counter_once_read
 
 
 # Create your views here.
@@ -90,12 +91,18 @@ def blog_detail(request, blog_pk):
     ])
     blog.content = md.convert(blog.content)
 
+    read_cookie_key = counter_once_read(request, blog)
+
     context = {}
     context['perivous_blog'] = Blog.objects.filter(created_time__lt=blog.created_time).first()
     context['next_blog'] = Blog.objects.filter(created_time__gt=blog.created_time).last()
     context['blog'] = blog
     context['toc'] = md.toc
     
-    response =  render(request, 'blog/blog_detail.html', context)
+    response = render(request, 'blog/blog_detail.html', context)
+    response.set_cookie(read_cookie_key, 'true') # 已阅
+
+    
+
 
     return response
