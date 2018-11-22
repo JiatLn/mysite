@@ -16,7 +16,13 @@
 {% block content %}
 <div class="row">
     <div class="col m7">
-        <!-- <h5 class="text-center">\(^o^)/~首页开发中，敬请期待</h5> -->
+
+        <p class="text-center">近七天访问量：</p>
+        <ul>
+            {% for k, v in read_data.items %}
+                <li>{{ k }}: {{ v }}</li>
+            {% endfor %}
+        </ul>
     </div>
     <div class="col s12 m6 l4 offset-l1">
         <aside>  

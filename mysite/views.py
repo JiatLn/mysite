@@ -9,13 +9,17 @@ from django.core.cache import cache
 import markdown
 
 from blog.models import Blog
+from read_counter.utils import get_a_week_read_data
 
 
 
 def home(request):
-    context = {}
     recent_blogs = Blog.objects.all().order_by('-last_updated_time')[:5]
+    read_data = get_a_week_read_data()
+
+    context = {}
     context['recent_blogs'] = recent_blogs
+    context['read_data'] = read_data
     return render(request, 'home.html', context)
 
 

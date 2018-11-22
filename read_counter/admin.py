@@ -11,4 +11,4 @@ class ReadNumAdmin(admin.ModelAdmin):
 
 @admin.register(ReadDetail)
 class ReadDetailAdmin(admin.ModelAdmin):
-    list_display = ('id', 'ip', 'username', 'date')
+    list_display = ('id', 'object_id', 'content_type', 'content_object', 'ip', 'date')
