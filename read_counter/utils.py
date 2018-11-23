@@ -1,4 +1,5 @@
 import datetime
+import time
 
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import F
@@ -32,11 +33,14 @@ def counter_once_read(request, obj):
 
 def get_a_week_read_data():
     today = timezone.now().date()
-    read_data = {}
+    dates = []
+    read_count = []
     for i in range(6, -1, -1):
         date = today - datetime.timedelta(days=i)
+        dates.append(date.strftime("%m/%d"))
         date = datetime.date(date.year, date.month, date.day)
 
         rn = ReadDetail.objects.filter(date__date=date).count()
-        read_data[str(date)] = rn
-    return read_data
+        read_count.append(rn)
+
+    return dates, read_count

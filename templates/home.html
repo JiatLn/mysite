@@ -8,21 +8,16 @@
 
 {% block header_extends %}
     {# https://www.hcharts.cn/docs/start-helloworld #}
-    <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/themes/avocado.js"></script>
 {% endblock header_extends %}
 
 
 {% block content %}
 <div class="row">
     <div class="col m7">
-
-        <p class="text-center">近七天访问量：</p>
-        <ul>
-            {% for k, v in read_data.items %}
-                <li>{{ k }}: {{ v }}</li>
-            {% endfor %}
-        </ul>
+        <br><div id="mychart" style="width: 450px; height: 300px;"></div>
     </div>
     <div class="col s12 m6 l4 offset-l1">
         <aside>  
@@ -60,5 +55,35 @@
         $(document).ready(function(){
           $('.carousel').carousel();
         });
+    </script>
+    <script type="text/javascript">
+        // 图表配置
+        var options = {
+            chart: { type: 'line' },
+            title: { text: '近7天的访问量' },
+            xAxis: {
+                categories: {{ read_date|safe }},
+                tickmarkPlacement: 'on'
+            },
+            yAxis: {
+                title: { text: null },
+                labels: { enabled: false },
+                gridLineDashStyle: 'Dash',
+            },
+            series: [{                              // 数据列
+                name: '访问量',                        // 数据列名
+                data: {{ read_count }},                     // 数据
+                showInLegend: false,
+                color: 'pink'
+            }],
+            credits: { enabled: false },
+            plotOptions: {
+                line: {
+                    dataLabels: { enabled: true, color: '#26a69a' }
+                }
+            }
+        };
+        // 图表初始化函数
+        var chart = Highcharts.chart('mychart', options);
     </script>
 {% endblock script_extends %}
