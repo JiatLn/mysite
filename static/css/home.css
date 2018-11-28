@@ -23,7 +23,7 @@
 .tab-content {
     background: #fff;
     width: 100%;
-    /*min-height: 200px;*/
+    min-height: 250px;
     overflow: hidden;
 
 }
@@ -31,7 +31,7 @@
 
 aside {
     background-color: #fff;
-    margin : 5% 0 0 0;
+    margin: 6.5% 0 0 0;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
 }
 
@@ -42,9 +42,25 @@ aside {
 
 
 #mychart {
-    /*width: 450px;*/
-    /*height: 300px;*/
     width: 100%;
-    height: 100%;
+    height: 300px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
+}
+
+
+.about-web {
+    height: 300px;
+    min-height: 300px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
+    background-color: #fff;
+    margin-top: 8%;
+}
+
+.about-web img {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    border: 4px solid #90CAF9;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
+    border-radius: 50%;
 }

@@ -14,7 +14,7 @@ from read_counter.utils import get_a_week_read_data
 
 
 def home(request):
-    recent_blogs = Blog.objects.all().order_by('-last_updated_time')[:5]
+    recent_blogs = Blog.objects.all().order_by('-last_updated_time')[:6]
     read_date, read_count = get_a_week_read_data()
 
     context = {}

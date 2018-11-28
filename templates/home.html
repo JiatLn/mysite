@@ -10,13 +10,13 @@
     {# https://www.hcharts.cn/docs/start-helloworld #}
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
     <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
-    <script src="https://img.hcharts.cn/highcharts/themes/avocado.js"></script>
+    <!-- <script src="https://img.hcharts.cn/highcharts/themes/avocado.js"></script> -->
 {% endblock header_extends %}
 
 
 {% block content %}
 <div class="row">
-    <div class="col s12 m12 l6 offset-l1">
+    <div class="col s12 m12 l5 ">
         <br><div id="mychart"></div>
     </div>
     <div class="col s12 m6 l4 offset-l0">
@@ -24,7 +24,7 @@
             <ul class="tabs tabs-fixed-width">
                 <li class="tab col s3"><a href="#test1">近期文章</a></li>
                 <li class="tab col s3"><a href="#test2">公众号</a></li>
-                <li class="tab col s3"><a href="#test3">更多..</a></li>
+                <li class="tab col s3"><a href="#test3">待定..</a></li>
             </ul>
             <div class="tab-content">
                 <div id="test1" class="col s12">
@@ -46,6 +46,17 @@
             </div>
         </aside>
     </div>
+    <div class="col s12 m6 l3 offset-l0">
+        <div class="about-web">
+            <br><img src="{% static 'images/head.jpg' %}">
+            <div class="divider" style="margin: 4% 10%;"></div>
+            <ul style="margin: 8% 10%;">
+                <li><strong>JiatLn</strong>の个人博客</li>
+                <li><span>人生苦短，我用Python 3.</span></li>
+                <li><a href="mailto:lne128gene980@163.com">lne128gene980@163.com</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
 {% endblock content %}
 
@@ -59,16 +70,24 @@
     <script type="text/javascript">
         // 图表配置
         var options = {
-            chart: { type: 'line' },
-            title: { text: '近7天的访问量' },
+            chart: {
+                "borderRadius": 5,
+                "type": "line",
+                "marginBottom": 70,
+                "borderWidth": 0,
+                "marginTop": 50,
+                "margin": 30
+            },
+            title: { text: null },
             xAxis: {
                 categories: {{ read_date|safe }},
-                tickmarkPlacement: 'on'
+                tickmarkPlacement: 'on',
+                title: { text: '近7天的访问量' },
             },
             yAxis: {
                 title: { text: null },
                 labels: { enabled: false },
-                gridLineDashStyle: 'Dash',
+                gridLineDashStyle: 'solid',
             },
             series: [{                              // 数据列
                 name: '访问量',                        // 数据列名
