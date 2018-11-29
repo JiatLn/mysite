@@ -1,5 +1,6 @@
 body {
-    background-color: #f6f4f1;
+    /*background-color: #f6f4f1;*/
+    background: url(../images/body-bg.png) rgb(242, 240, 236);
     /*background: url(../images/bgi.jpg) center center / cover no-repeat rgb(34, 34, 34);*/
 }
 
@@ -33,10 +34,13 @@ a:hover {
 
 nav {
     /*background: url(../images/bg.jpg) center center / cover no-repeat rgb(34, 34, 34);*/
-    background: #000;
+    background: url(../images/top-bg.png) 0 0 repeat-x;
     overflow: hidden;
 }
 
+nav ul a {
+    color: #a78678;
+}
 
 
 
@@ -78,7 +82,7 @@ main {
 }
 
 footer > ul {
-    width: 30%;
+    width: 36%;
 }
 
 
@@ -117,4 +121,10 @@ footer > ul {
     border-style: solid;
     border-color: transparent transparent transparent #26a69a;
     margin-right: 3%;
+}
+
+
+
+.clearfix {
+    clear: both;
 }

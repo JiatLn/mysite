@@ -21,28 +21,28 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-<canvas id="canvas" class="hide-on-small-only"></canvas>
+<!-- <canvas id="canvas" class="hide-on-small-only"></canvas> -->
 <main>
     {% block menu %}
     <div class="container">
         <div class="section">
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo" style="margin-left: 2%;">OEW</a>
+                    <a href="//oew.ink" class="brand-logo" style="margin-left: 2%;">OEW</a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{% url 'home' %}">首页</a></li>
                         <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
                         <li><a href="" onclick="alert('施工中..x.x')">留言</a></li>
                         <li><a href="{% url 'about' %}">关于</a></li>
-                        <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
+                        <li><a href="/admin">后台</a></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <li><a href="{% url 'home' %}">首页</a></li>
                         <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
                         <li><a href="" onclick="alert('施工中..x.x')">留言</a></li>
                         <li><a href="{% url 'about' %}">关于</a></li>
-                        <li><a href="/admin"><i class="material-icons">dashboard</i>后台</a></li>
+                        <li><a href="/admin">后台</a></li>
                     </ul>
                 </div>
             </nav>
@@ -58,6 +58,7 @@
             </div>
             <div class="col m3" style="margin-top: 20px;">
                 <p class="hide-on-small-only blue-text">永远年轻，永远热泪盈眶。</p>
+                
             </div>
         </div>
         <div class="divider"></div>
@@ -71,7 +72,7 @@
 <footer class="container">
     <div class="divider"></div>
     <ul class="right">
-        <li class="left" style="margin-left: 8%; color: rgba(40,40,40,.4);">&copy; JiatLn 2018.</li>
+        <li class="left" style="margin-left: 8%; color: rgba(40,40,40,.5);">&copy; JiatLn 2018. All Rights Reserved.</li>
         <li class="left" style="margin-left: 8%;"><a href="https://github.com/JiatLn/mysite" target="_blank"><i class="fa fa-github" style="color: #ee6e73"></i></a></li>
         <!-- <li class="left" style="margin-left: 8%;"><a href="https://www.zhihu.com/people/lin-jia-tao-75" target="_blank">ZhiHu</a></li> -->
         <li class="left" style="margin-left: 8%;"><a href="mailto:lne128gene980@163.com" target="_blank"><i class="fa fa-envelope" style="color: #ee6e73"></i></a></li>

@@ -50,11 +50,13 @@
         <div class="about-web">
             <br><img src="{% static 'images/head.jpg' %}">
             <div class="divider" style="margin: 4% 10%;"></div>
-            <ul style="margin: 8% 10%;">
+            <ul style="margin: 8% 10%;" NAME="up">
                 <li><strong>JiatLn</strong>の个人博客</li>
+                <li>已上线<div class="clock" style="display: inline-block;"></div></li>
                 <li><span>人生苦短，我用Python 3.</span></li>
                 <li><a href="mailto:lne128gene980@163.com">lne128gene980@163.com</a></li>
             </ul>
+            <div class="clearfix"></div>
         </div>
     </div>
 </div>
@@ -62,6 +64,7 @@
 
 {% block script_extends %}
     <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/clock.js' %}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
           $('.carousel').carousel();

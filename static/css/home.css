@@ -49,7 +49,6 @@ aside {
 
 
 .about-web {
-    height: 300px;
     min-height: 300px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
     background-color: #fff;
@@ -63,4 +62,8 @@ aside {
     border: 4px solid #90CAF9;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
     border-radius: 50%;
+}
+
+.about-web ul {
+    padding-bottom: 8%;
 }
