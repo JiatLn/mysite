@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}留言板1.0 | JiatLn{% endblock title %}
+
+
+
+{% block header_extends %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/timeline.css' %}">
+<script src="{% static 'js/timeline.js' %}"></script>
+{% endblock header_extends %}
+
+{% block banner %}{% endblock banner %}
+
+{% block content %}
+
+
+<p>{{ content }}</p><a href="#i-want-ly">我要留言</a>&nbsp;&nbsp;<span><i class="fa fa-hand-o-left" aria-hidden="true"></i> 戳</span>
+<br><br>
+<div class="row">
+    <div class="col l8 m12 s12 offset-l2">
+        <section class="comments">
+            {% for msg in messages %}
+            {% if msg.is_public and msg.content %}
+            <article class="comment">
+                <a class="comment-img" href="#non">
+                    <img src="{% static 'images/head.jpg' %}" alt="" width="50" height="50">
+                </a>
+                <div class="comment-body">
+                    <div class="text">
+                        <p>{{ msg.content }}</p>
+                    </div>
+                    <p class="attribution">by <a href="#non">{{ msg.nickname }}</a> at {{ msg.created_time|date:"Y/m/d H:s" }}</p>
+                </div><br>
+            </article>
+            {% endif %}
+            {% endfor %}
+        </section>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+<div class="row">
+    <div class="col l8 m12 s12 offset-l2">
+        <h6 id="i-want-ly">智慧如你，请留下的你足迹。</h6>
+        <div class="row">
+            <form class="col s12" method="post" name="{% url 'message' %}">
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="icon_prefix" type="text" class="validate" name="nickname">
+                        <label for="icon_prefix">昵称</label>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        <input id="icon_email" type="email" class="validate" name="email">
+                        <label for="icon_email">邮箱</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        <textarea id="icon_prefix2" class="materialize-textarea" length="120" name="content"></textarea>
+                        <label for="icon_prefix2">写下的你想说的话...</label>
+                    </div>
+                </div>
+                <input class="btn waves-effect waves-light right" type="submit" value="留言" onsubmit="alert('留言成功')">
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}
+
+{% block script_extends %}{% endblock script_extends %}
+
+
+
+

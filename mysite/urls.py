@@ -30,6 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls'), name='blog'),
     path('likes/', include('likes.urls'), name='likes'),
+    path('message/', include('message_board.urls'), name='message'),
     path('about', views.about, name='about'),
 
 ]

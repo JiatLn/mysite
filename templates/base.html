@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
     {% block header_extends %}{% endblock header_extends %}
     <title>{% block title %}{% endblock title %}</title>
 </head>
@@ -33,14 +33,14 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{% url 'home' %}">首页</a></li>
                         <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
-                        <li><a href="" onclick="alert('施工中..x.x')">留言</a></li>
+                        <li><a href="{% url 'message' %}">留言</a></li>
                         <li><a href="{% url 'about' %}">关于</a></li>
                         <li><a href="/admin">后台</a></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <li><a href="{% url 'home' %}">首页</a></li>
                         <li><a href="{% url 'blog_list' %}#banner">文章</a></li>
-                        <li><a href="" onclick="alert('施工中..x.x')">留言</a></li>
+                        <li><a href="{% url 'message' %}">留言</a></li>
                         <li><a href="{% url 'about' %}">关于</a></li>
                         <li><a href="/admin">后台</a></li>
                     </ul>
@@ -58,7 +58,6 @@
             </div>
             <div class="col m3" style="margin-top: 20px;">
                 <p class="hide-on-small-only blue-text">永远年轻，永远热泪盈眶。</p>
-                
             </div>
         </div>
         <div class="divider"></div>
@@ -82,7 +81,6 @@
     <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
 </div>
 {% endblock footer %}
-     
 </body>
 <script type="text/javascript">
     $(".button-collapse").sideNav();
@@ -90,8 +88,6 @@
     $(document).ready(function(){
       $('.parallax').parallax();
     });
-
 </script>
-<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
 {% block script_extends %}{% endblock script_extends %}
 </html>
