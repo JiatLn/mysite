@@ -16,7 +16,7 @@
     <a data-activates="mobile-demo" class="menu-btn button-collapse"><i class="fa fa-bars" aria-hidden="true"></i> MENU</a>
     <ul class="side-nav" id="mobile-demo" style="background: #000;">
         <li><a style="color: #fff;" href="{% url 'home' %}">首页</a></li>
-        <li><a style="color: #fff;" href="{% url 'blog_list' %}#banner">文章</a></li>
+        <li><a style="color: #fff;" href="{% url 'blog_list' %}">文章</a></li>
         <li><a style="color: #fff;" href="">留言</a></li>
         <li><a style="color: #fff;" href="{% url 'about' %}">关于</a></li>
         <li><a style="color: #fff;" href="/admin">后台</a></li>
@@ -34,7 +34,7 @@
 
 <ul class="blog-info-desc">
     <li><i class="fa fa-user-o" aria-hidden="true"></i> {{ blog.author }}</li>
-    <li><i class="fa fa-tag" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}#banner">{{ blog.blog_type }}</a></li>
+    <li><i class="fa fa-tag" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a></li>
     <li><i class="fa fa-clock-o" aria-hidden="true"></i> {{ blog.created_time|date:'Y-m-d H:i:s' }}</li>
     <li>阅读({{ blog.get_read_num }})</li>
     <li class="like pull-right" onclick="likeChange(this, '{% get_content_type blog %}', {{ blog.pk }})">
