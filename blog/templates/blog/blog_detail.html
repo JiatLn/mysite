@@ -7,7 +7,7 @@
 
 
 {% block header_extends %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/blog/blog.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/blog/blog-detail.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/editormd.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/code.css' %}">
 {% endblock header_extends %}
@@ -49,10 +49,12 @@
         <div class="col s12 m8 l8">
             <div class="markdown-body">{{ blog.content|safe }}</div>
         </div>
+        {% if toc|safe|length > 35 %}
         <div class="col hide-on-small-only m3 l3">
             <br><br>
             {{ toc|safe }}
         </div>
+        {% endif %}
     </div>
 </article>
 
@@ -75,7 +77,7 @@
 
 {% block script_extends %}
 
-<script type="text/javascript">
+<script>
     String.prototype.format = function() {
         var str = this;
         for (var i = 0; i < arguments.length; i++) {
@@ -136,7 +138,7 @@
 
 <script src="https://cdn.bootcss.com/marked/0.5.1/marked.min.js"></script>
 <script src="{% static 'js/editormd.min.js' %}"></script>
-<script type="text/javascript">
+<script>
   $(document).ready(function(){
     $('.toc').prepend('<span>在这篇文章中：</span>');
     $('.toc').pushpin({

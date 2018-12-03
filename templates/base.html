@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-    <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+
     {% block header_extends %}{% endblock header_extends %}
     <title>{% block title %}{% endblock title %}</title>
 </head>
@@ -50,14 +51,14 @@
     </div>
     {% endblock %}
     {% block banner %}
-    <div class="container">
+    <div class="container hide-on-small-only">
         <div class="row" id="banner">
             <div class="col m9 s12">
                 <h2 class="header center-on-small-only blue-text text-lighten-3" style="margin: 4% 0 0 4%;">JiatLn</h2>
                 <h5 class="light center-on-small-only" style="margin: 4% 0 0 4%; color: #26a69a;">O ever youthful, O ever weeping.</h5>
             </div>
             <div class="col m3" style="margin-top: 20px;">
-                <p class="hide-on-small-only blue-text">永远年轻，永远热泪盈眶。</p>
+                <p class="blue-text">永远年轻，永远热泪盈眶。</p>
             </div>
         </div>
         <div class="divider"></div>
@@ -82,7 +83,7 @@
 </div>
 {% endblock footer %}
 </body>
-<script type="text/javascript">
+<script>
     $(".button-collapse").sideNav();
 
     $(document).ready(function(){

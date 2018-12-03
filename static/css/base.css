@@ -128,3 +128,9 @@ footer > ul {
 .clearfix {
     clear: both;
 }
+
+
+
+#banner p {
+    font-family: 宋体;
+}

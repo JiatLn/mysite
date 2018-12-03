@@ -9,71 +9,70 @@
 
 
 {% block header_extends %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/blog/blog.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/editormd.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/blog/blog-list.css' %}">
 {% endblock header_extends %}
 
 
 
 {% block content %}
+<br>
 <div class="row">
     <div class="col l9 m12 s12">
         <ul class="blog-list">
-        {% for blog in blogs %}
-        <li class="row" style="margin: 4% 6% 5% 6%;">
-            <div class="col l5 m12 s12">
-                <div class="title">
-                    <i class="fa fa-chevron-right grey-text" aria-hidden="true"></i> <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
-                </div>
-                <div class="desc">
-                    <i class="fa fa-tag grey-text" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}" style="color: #ffab40;">{{ blog.blog_type }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <i class="fa fa-clock-o grey-text" aria-hidden="true"></i> {{ blog.created_time|date:'Y-m-d' }}&nbsp;&nbsp;&nbsp;&nbsp;
-                阅读({{ blog.get_read_num }})
-                </div>
-            </div>
-            <div class="col l7 m12 s12">
-                <div class="content">
-                    {{ blog.content|safe|striptags|truncatechars:'90' }}
-                </div>
-            </div>
-        </li>
-        <div class="divider" style="margin: 0 4%;"></div>
-        {% empty %}
-            <div class="row">
-                <span style="margin: 6%; line-height: 500%;">暂无内容，敬请期待。Thanks♪(･ω･)ﾉ</span>
-            </div>
-        {% endfor %}
-        </ul>
-    </div>
-    <!-- <div class="col l9 m12 s12">
-        <ul id="staggered-test">
             {% for blog in blogs %}
-                <li class="card hoverable" style="opacity: 0;">
-                    <div class="card-content">
-                        <h5><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h5>
-                        <p>{{ blog.content|safe|striptags|truncatechars:'200' }}</p>
+            <li class="row" style="margin: 4% 6% 5% 6%;">
+                <div class="col l5 m12 s12">
+                    <div class="title">
+                        <i class="fa fa-chevron-right grey-text" aria-hidden="true"></i> <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
                     </div>
-                    <div class="card-action">
-                        <i class="fa fa-tag" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <i class="fa fa-clock-o" aria-hidden="true"></i> {{ blog.created_time|date:'Y-m-d' }}&nbsp;&nbsp;&nbsp;&nbsp;
-                        阅读({{ blog.get_read_num }})&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="desc">
+                        <i class="fa fa-tag grey-text" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}" style="color: #ffab40;">{{ blog.blog_type }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-clock-o grey-text" aria-hidden="true"></i> {{ blog.created_time|date:'Y-m-d' }}&nbsp;&nbsp;&nbsp;&nbsp;
+                    阅读({{ blog.get_read_num }})
                     </div>
-                </li>
+                </div>
+                <div class="col l7 m12 s12">
+                    <div class="content">
+                        {{ blog.content|safe|striptags|truncatechars:'90' }}
+                    </div>
+                </div>
+            </li>
+            <div class="divider" style="margin: 0 4%;"></div>
             {% empty %}
-                <p>暂无内容，敬请期待。</p>
+                <div class="row">
+                    <span style="margin: 6%; line-height: 500%;">暂无内容，敬请期待。Thanks♪(･ω･)ﾉ</span>
+                </div>
             {% endfor %}
         </ul>
-    </div> -->
-    <!-- <div class="col l8 s12 m12">
-        <div class="text-center" id="pagination">
-            {{ blog_of_page.render }}
-        </div>
-        <div class="panel-footer">
-            共有{{ blog_of_page.paginator.count }}篇文章。当前第{{ blog_of_page.number }}页，共{{ blog_of_page.paginator.num_pages }}页。
-        </div>
-    </div> -->
+        <ul class="pagination">
+            <li class=""><a href="?{{ blog_of_page.previous_page_number.querystring }}" {% if not blog_of_page.has_previous %}class="btn-flat disabled"{% endif %}><i class="material-icons">chevron_left</i></a></li>
+            {% for page in blog_of_page.pages %}
+                {% if page %}
+                    {% ifequal page blog_of_page.number %}
+                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                    {% endifequal %}
+                {% else %}
+                    <li class="none"><a href="">...</a></li>
+                {% endif %}
+            {% endfor %}
+            <li class="waves-effect"><a href="?{{ blog_of_page.next_page_number.querystring }}" {% if not blog_of_page.has_next %}class="btn-flat disabled"{% endif %}><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+    </div>
     <div class="col l3 m12 s12">
-        <aside id="introduction" class="section scrollspy">
+        <aside>
+            <div class="card-header"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> 日期归档</div>
+            <div class="collection">
+                {% for blog_date, blog_count in blog_dates %}
+                    <a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}"" class="collection-item"><span class="badge">{{ blog_count }}</span>{{ blog_date|date:'Y年m月' }}</a>
+                {% empty %}
+                    <li>暂无分类。</li>
+                {% endfor %}
+            </div>
+        </aside>
+        <aside>
             <div class="card-header"><strong><i class="fa fa-tags" aria-hidden="true"></i> 文章分类</strong></div>
             <ul class="tags-list">
                 {% for blog_type in blog_types %}
@@ -83,22 +82,13 @@
                 {% endfor %}
             </ul>
         </aside>
-        <br>
-        <aside id="introduction" class="section scrollspy">
-            <div class="card-header"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> 日期归档</div>
-            <!-- <ul class="tags-list">
-                {% for blog_date, blog_count in blog_dates %}
-                    <li><a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}">{{ blog_date|date:'Y年m月' }} ({{ blog_count }})</a><span class="new badge">{{ blog_count }}</span></li>
-                {% empty %}
-                    <li>暂无分类。</li>
-                {% endfor %}
-            </ul> -->
+        <aside>
+            <div class="card-header"><i class="fa fa-link" aria-hidden="true"></i> 友情链接</div>
             <div class="collection">
-                {% for blog_date, blog_count in blog_dates %}
-                    <a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}"" class="collection-item"><span class="badge">{{ blog_count }}</span>{{ blog_date|date:'Y年m月' }}</a>
-                {% empty %}
-                    <li>暂无分类。</li>
-                {% endfor %}
+                <a href="#!" class="collection-item">虚位以待</a>
+                <a href="#!" class="collection-item">虚位以待</a>
+                <a href="#!" class="collection-item">虚位以待</a>
+                <a href="#!" class="collection-item">虚位以待</a>
             </div>
         </aside>
     </div>
@@ -106,7 +96,7 @@
 {% endblock content %}
 
 {% block script_extends %}
-<script type="text/javascript">
+<script>
     var options = [
         {
             selector: '#staggered-test', offset: 0, callback: function(el) {

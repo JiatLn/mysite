@@ -1,6 +1,3 @@
-
-
-
 #container {
     margin: 0 auto;
     padding-bottom: 4em;
@@ -19,20 +16,19 @@
 
 
 
-/*右边的tabs*/
+/*tabs*/
 .tab-content {
     background: #fff;
     width: 100%;
-    min-height: 250px;
     overflow: hidden;
 
 }
 
-
-aside {
+.the-tab {
+    min-height: 300px;
+    max-height: 300px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
     background-color: #fff;
-    margin: 6.5% 0 0 0;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
 }
 
 .tabs {
@@ -40,30 +36,34 @@ aside {
 }
 
 
-
+/*统计*/
 #mychart {
     width: 100%;
     height: 300px;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 }
 
 
+/*关于*/
 .about-web {
     min-height: 300px;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
     background-color: #fff;
-    margin-top: 8%;
 }
 
 .about-web img {
     display: block;
     margin: 0 auto;
-    width: 50%;
+    width: 40%;
     border: 4px solid #90CAF9;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
     border-radius: 50%;
 }
 
 .about-web ul {
     padding-bottom: 8%;
 }
+
+
+
+

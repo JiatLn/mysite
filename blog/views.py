@@ -114,11 +114,8 @@ def blog_detail(request, blog_pk):
     context['next_blog'] = Blog.objects.filter(created_time__gt=blog.created_time).last()
     context['blog'] = blog
     context['toc'] = md.toc
-        
+
     response = render(request, 'blog/blog_detail.html', context)
     response.set_cookie(read_cookie_key, 'true') # 已阅
-
-    
-
 
     return response

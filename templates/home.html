@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}JiatLn | 人定胜天{% endblock title %}
+{% block title %}JiatLn | 个人博客{% endblock title %}
 
 
 
@@ -9,18 +9,20 @@
 {% block header_extends %}
     {# https://www.hcharts.cn/docs/start-helloworld #}
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/blog/blog-list.css' %}">
     <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
     <!-- <script src="https://img.hcharts.cn/highcharts/themes/avocado.js"></script> -->
 {% endblock header_extends %}
 
 
 {% block content %}
-<div class="row">
+<br>
+<div class="row" style="margin-bottom: 0;">
     <div class="col s12 m12 l5 ">
-        <br><div id="mychart"></div>
+        <div id="mychart"></div>
     </div>
     <div class="col s12 m6 l4 offset-l0">
-        <aside>  
+        <div class="the-tab">  
             <ul class="tabs tabs-fixed-width">
                 <li class="tab col s3"><a href="#test1">近期文章</a></li>
                 <li class="tab col s3"><a href="#test2">公众号</a></li>
@@ -33,7 +35,7 @@
                     {% endfor%}
                 </div>
                 <div id="test2" class="col">
-                    <img width="180" style="text-align: center;" src="{% static 'images/qrcode.jpg' %}">
+                    <img width="180" src="{% static 'images/qrcode.jpg' %}">
                 </div>
                 <div id="test3" class="col">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -43,10 +45,11 @@
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </div>
+                <div class="clearfix"></div>
             </div>
-        </aside>
+        </div>
     </div>
-    <div class="col s12 m6 l3 offset-l0">
+    <div class="col s12 m4 l3 offset-m2">
         <div class="about-web">
             <br><img src="{% static 'images/head.jpg' %}">
             <div class="divider" style="margin: 4% 10%;"></div>
@@ -60,17 +63,93 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col l9 m12 s12">
+        <ul class="blog-list">
+            {% for blog in blogs %}
+            <li class="row" style="margin: 4% 6% 5% 6%;">
+                <div class="col l5 m12 s12">
+                    <div class="title">
+                        <i class="fa fa-chevron-right grey-text" aria-hidden="true"></i> <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
+                    </div>
+                    <div class="desc">
+                        <i class="fa fa-tag grey-text" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}" style="color: #ffab40;">{{ blog.blog_type }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-clock-o grey-text" aria-hidden="true"></i> {{ blog.created_time|date:'Y-m-d' }}&nbsp;&nbsp;&nbsp;&nbsp;
+                    阅读({{ blog.get_read_num }})
+                    </div>
+                </div>
+                <div class="col l7 m12 s12">
+                    <div class="content">
+                        {{ blog.content|safe|striptags|truncatechars:'90' }}
+                    </div>
+                </div>
+            </li>
+            <div class="divider" style="margin: 0 4%;"></div>
+            {% empty %}
+                <div class="row">
+                    <span style="margin: 6%; line-height: 500%;">暂无内容，敬请期待。Thanks♪(･ω･)ﾉ</span>
+                </div>
+            {% endfor %}
+        </ul>
+        <ul class="pagination">
+            <li class=""><a href="?{{ blog_of_page.previous_page_number.querystring }}" {% if not blog_of_page.has_previous %}class="btn-flat disabled"{% endif %}><i class="material-icons">chevron_left</i></a></li>
+            {% for page in blog_of_page.pages %}
+                {% if page %}
+                    {% ifequal page blog_of_page.number %}
+                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                    {% endifequal %}
+                {% else %}
+                    <li class="none"><a href="">...</a></li>
+                {% endif %}
+            {% endfor %}
+            <li class="waves-effect"><a href="?{{ blog_of_page.next_page_number.querystring }}" {% if not blog_of_page.has_next %}class="btn-flat disabled"{% endif %}><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+    </div>
+    <div class="col l3 m12 s12">
+        <aside>
+            <div class="card-header"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> 日期归档</div>
+            <div class="collection">
+                {% for blog_date, blog_count in blog_dates %}
+                    <a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}"" class="collection-item"><span class="badge">{{ blog_count }}</span>{{ blog_date|date:'Y年m月' }}</a>
+                {% empty %}
+                    <li>暂无分类。</li>
+                {% endfor %}
+            </div>
+        </aside>
+        <aside>
+            <div class="card-header"><strong><i class="fa fa-tags" aria-hidden="true"></i> 文章分类</strong></div>
+            <ul class="tags-list">
+                {% for blog_type in blog_types %}
+                    <li class="chip"><a href="{% url 'blogs_with_type' blog_type.pk %}">{{ blog_type.type_name }} ({{ blog_type.blog_count }})</a></li>
+                {% empty %}
+                    <li>暂无分类。</li>
+                {% endfor %}
+            </ul>
+        </aside>
+        <aside>
+            <div class="card-header"><i class="fa fa-link" aria-hidden="true"></i> 友情链接</div>
+            <div class="collection">
+                <a href="#!" class="collection-item">虚位以待</a>
+                <a href="#!" class="collection-item">虚位以待</a>
+                <a href="#!" class="collection-item">虚位以待</a>
+                <a href="#!" class="collection-item">虚位以待</a>
+            </div>
+        </aside>
+    </div>
+</div>
 {% endblock content %}
 
 {% block script_extends %}
-    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/clock.js' %}"></script>
-    <script type="text/javascript">
+    <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/clock.js' %}"></script>
+    <script>
         $(document).ready(function(){
           $('.carousel').carousel();
         });
     </script>
-    <script type="text/javascript">
+    <script>
         // 图表配置
         var options = {
             chart: {
