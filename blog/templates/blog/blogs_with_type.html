@@ -10,5 +10,13 @@
 {% endblock blog_list_title %}
 
 
-
+{% block breadcrumb %}
+<div class="row" style="margin-bottom: 0;">
+<ol class="bread-crumb">
+    <li><a href="{% url 'home' %}">首页</a></li>
+    <li><a href="{% url 'blog_list' %}">文章归档</a></li>
+    <li><a href="{% url 'blogs_with_type' blog_type.pk %}">{{ blog_type.type_name }}</a></li>
+</ol>
+</div>
+{% endblock %}
 

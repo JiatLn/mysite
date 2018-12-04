@@ -9,7 +9,7 @@
 {% block header_extends %}
     {# https://www.hcharts.cn/docs/start-helloworld #}
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/blog/blog-list.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/blog/blog-list.css' %}"> -->
     <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
     <!-- <script src="https://img.hcharts.cn/highcharts/themes/avocado.js"></script> -->
 {% endblock header_extends %}
@@ -26,7 +26,7 @@
             <ul class="tabs tabs-fixed-width">
                 <li class="tab col s3"><a href="#test1">近期文章</a></li>
                 <li class="tab col s3"><a href="#test2">公众号</a></li>
-                <li class="tab col s3"><a href="#test3">待定..</a></li>
+                <!-- <li class="tab col s3"><a href="#test3">待定..</a></li> -->
             </ul>
             <div class="tab-content">
                 <div id="test1" class="col s12">
@@ -37,19 +37,14 @@
                 <div id="test2" class="col">
                     <img width="180" src="{% static 'images/qrcode.jpg' %}">
                 </div>
-                <div id="test3" class="col">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
+                <!-- <div id="test3" class="col">
+                    敬请期待。
+                </div> -->
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
-    <div class="col s12 m4 l3 offset-m2">
+    <div class="col s12 m5 l3 offset-m1">
         <div class="about-web">
             <br><img src="{% static 'images/head.jpg' %}">
             <div class="divider" style="margin: 4% 10%;"></div>
@@ -57,7 +52,7 @@
                 <li><strong>JiatLn</strong>の个人博客</li>
                 <li>已上线<div class="clock" style="display: inline-block;"></div></li>
                 <li><span>人生苦短，我用Python 3.</span></li>
-                <li><a href="mailto:lne128gene980@163.com">lne128gene980@163.com</a></li>
+                <li><i class="fa fa-envelope-o" aria-hidden="true"></i>  <a href="mailto:lne128gene980@163.com">写信给我</a></li>
             </ul>
             <div class="clearfix"></div>
         </div>
@@ -65,9 +60,10 @@
 </div>
 <div class="row">
     <div class="col l9 m12 s12">
+        <!-- 文章列表 -->
         <ul class="blog-list">
             {% for blog in blogs %}
-            <li class="row" style="margin: 4% 6% 5% 6%;">
+            <li class="row">
                 <div class="col l5 m12 s12">
                     <div class="title">
                         <i class="fa fa-chevron-right grey-text" aria-hidden="true"></i> <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
@@ -84,13 +80,14 @@
                     </div>
                 </div>
             </li>
-            <div class="divider" style="margin: 0 4%;"></div>
+            <!-- <div class="divider" style="margin: 0 4%;"></div> -->
             {% empty %}
                 <div class="row">
                     <span style="margin: 6%; line-height: 500%;">暂无内容，敬请期待。Thanks♪(･ω･)ﾉ</span>
                 </div>
             {% endfor %}
         </ul>
+        <!-- 分页 -->
         <ul class="pagination">
             <li class=""><a href="?{{ blog_of_page.previous_page_number.querystring }}" {% if not blog_of_page.has_previous %}class="btn-flat disabled"{% endif %}><i class="material-icons">chevron_left</i></a></li>
             {% for page in blog_of_page.pages %}
@@ -107,36 +104,36 @@
             <li class="waves-effect"><a href="?{{ blog_of_page.next_page_number.querystring }}" {% if not blog_of_page.has_next %}class="btn-flat disabled"{% endif %}><i class="material-icons">chevron_right</i></a></li>
         </ul>
     </div>
-    <div class="col l3 m12 s12">
-        <aside>
-            <div class="card-header"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> 日期归档</div>
+    <div class="col l3 m6 s12">
+        <div class="aside">
+            <div class="aside-title"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> 日期归档</div>
             <div class="collection">
                 {% for blog_date, blog_count in blog_dates %}
-                    <a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}"" class="collection-item"><span class="badge">{{ blog_count }}</span>{{ blog_date|date:'Y年m月' }}</a>
+                    <a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}" class="collection-item"><span class="badge">{{ blog_count }}</span>{{ blog_date|date:'Y年m月' }}</a>
                 {% empty %}
                     <li>暂无分类。</li>
                 {% endfor %}
             </div>
-        </aside>
-        <aside>
-            <div class="card-header"><strong><i class="fa fa-tags" aria-hidden="true"></i> 文章分类</strong></div>
+        </div>
+        <div class="aside">
+            <div class="aside-title"><i class="fa fa-tags" aria-hidden="true"></i> 文章分类</div>
             <ul class="tags-list">
                 {% for blog_type in blog_types %}
-                    <li class="chip"><a href="{% url 'blogs_with_type' blog_type.pk %}">{{ blog_type.type_name }} ({{ blog_type.blog_count }})</a></li>
+                    <li class="chip"><a href="{% url 'blogs_with_type' blog_type.pk %}">{{ blog_type.type_name }}</a></li>
                 {% empty %}
                     <li>暂无分类。</li>
                 {% endfor %}
             </ul>
-        </aside>
-        <aside>
-            <div class="card-header"><i class="fa fa-link" aria-hidden="true"></i> 友情链接</div>
+        </div>
+        <div class="aside">
+            <div class="aside-title"><i class="fa fa-link" aria-hidden="true"></i> 友情链接</div>
             <div class="collection">
                 <a href="#!" class="collection-item">虚位以待</a>
                 <a href="#!" class="collection-item">虚位以待</a>
                 <a href="#!" class="collection-item">虚位以待</a>
                 <a href="#!" class="collection-item">虚位以待</a>
             </div>
-        </aside>
+        </div>
     </div>
 </div>
 {% endblock content %}

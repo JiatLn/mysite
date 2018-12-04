@@ -9,3 +9,15 @@
 	<a class="pull-right" href="{% url 'blog_list' %}">查看所有</a>
 
 {% endblock blog_list_title %}
+
+
+
+{% block breadcrumb %}
+<div class="row" style="margin-bottom: 0;">
+<ol class="bread-crumb">
+    <li><a href="{% url 'home' %}">首页</a></li>
+    <li><a href="{% url 'blog_list' %}">日期归档</a></li>
+    <li><a href="javascripts:();">{{ blog_date }}</a></li>
+</ol>
+</div>
+{% endblock %}

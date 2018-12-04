@@ -45,15 +45,8 @@ def get_blog_list_common_data(request, blogs):
 def blog_list(request):
 
     blogs = Blog.objects.all()
-    for blog in blogs:
-        blog.content = markdown.markdown(blog.content,
-                                  extensions=[
-                                     'markdown.extensions.extra',
-                                     'markdown.extensions.codehilite',
-                                     'markdown.extensions.toc',
-                                     
-                                  ])
-    context = get_blog_list_common_data(request, blogs)
+    context = {}
+    context['blogs'] = blogs
 
     return render(request, 'blog/blog_list.html', context)
 
@@ -62,16 +55,9 @@ def blogs_with_type(request, blog_type_pk):
 
     blog_type = get_object_or_404(BlogType, pk=blog_type_pk)
     blogs = Blog.objects.filter(blog_type=blog_type)
-    for blog in blogs:
-        blog.content = markdown.markdown(blog.content,
-                                  extensions=[
-                                     'markdown.extensions.extra',
-                                     'markdown.extensions.codehilite',
-                                     'markdown.extensions.toc',
-                                     
-                                  ])
 
-    context = get_blog_list_common_data(request, blogs)
+    context = {}
+    context['blogs'] = blogs
     context['blog_type'] = blog_type
 
     return render(request, 'blog/blogs_with_type.html', context)
@@ -80,16 +66,9 @@ def blogs_with_type(request, blog_type_pk):
 def blogs_with_date(request, year, month):
 
     blogs = Blog.objects.filter(created_time__year=year, created_time__month=month)
-    for blog in blogs:
-        blog.content = markdown.markdown(blog.content,
-                                  extensions=[
-                                     'markdown.extensions.extra',
-                                     'markdown.extensions.codehilite',
-                                     'markdown.extensions.toc',
-                                     
-                                  ])
 
-    context = get_blog_list_common_data(request, blogs)
+    context = {}
+    context['blogs'] = blogs
     context['blog_date'] = '%d年%d月' % (year, month)
 
     return render(request, 'blog/blogs_with_date.html', context)

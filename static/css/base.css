@@ -18,7 +18,7 @@ a:hover {
 
 
 .container {
-    /*background-color: #fff;*/
+    max-width: 1000px;
 }
 
 
@@ -27,7 +27,8 @@ a:hover {
     background-color: #fff;
     margin: auto;
     height: 200px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 1px 2px #aaa;
+    /*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);*/
 }
 
 
@@ -82,7 +83,7 @@ main {
 }
 
 footer > ul {
-    width: 36%;
+    width: 42%;
 }
 
 
@@ -133,4 +134,29 @@ footer > ul {
 
 #banner p {
     font-family: 宋体;
+}
+
+
+
+/*面包屑*/
+.bread-crumb {
+    /*padding: 15px;*/
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+
+.bread-crumb li {
+    display: inline-block;
+    font-size: 13px;
+}
+
+.bread-crumb a {
+    color: #394a58;
+}
+
+.bread-crumb>li+li:before {
+    padding: 0 5px;
+    color: #394a58;
+    content: "/\00a0";
 }

@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %}关于 - JiatLn's Blog{% endblock title %}
+{% block title %}关于 | JiatLn{% endblock title %}
 
 
 
@@ -15,7 +15,14 @@
 {% block banner %}{% endblock %}
 
 {% block content %}
-
+{% block breadcrumb %}
+<div class="row" style="margin-bottom: 0;">
+<ol class="bread-crumb">
+    <li><a href="{% url 'home' %}">首页</a></li>
+    <li><a href="{% url 'about' %}">关于</a></li>
+</ol>
+</div>
+{% endblock %}
 <div class="row">
     <div class="col l8 m12 s12">
         <div class="markdown-body card-panel">{{ about.content|safe }}</div>
