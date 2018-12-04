@@ -53,7 +53,7 @@
                     <div class="text">
                         <p>{{ msg.content }}</p>
                     </div>
-                    <p class="attribution">by <a href="#non">{{ msg.nickname }}</a> at {{ msg.created_time|date:"Y/m/d H:s" }}</p>
+                    <p class="attribution">by <a href="#non">{{ msg.nickname }}</a> @ {{ msg.created_time|date:"Y/m/d H:s" }}</p>
                 </div><br>
             </article>
             {% endif %}

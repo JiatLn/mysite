@@ -29,7 +29,7 @@ article {
     /*border: 1px solid #fde;*/
     /*border-radius: 1%;*/
     padding: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     /*min-height: 400px;*/
     padding-top: 40px;
     padding-bottom: 40px;
@@ -130,3 +130,11 @@ article {
 
 
 
+.blog-more {
+    background-color: #fff;
+    padding: 12px 20px;
+}
+
+.blog-more a {
+    color: #394a58;
+}

@@ -2,7 +2,7 @@
 {% load static %}
 {% load likes_tags %}
 
-{% block title %}{{ blog.title }}{% endblock title %}
+{% block title %}{{ blog.title }} | JiatLn{% endblock title %}
 {% block nav_blog_active %}active{% endblock nav_blog_active %}
 
 
@@ -46,11 +46,11 @@
 <!-- <div class="divider"></div> -->
 <article class="blog-content">
     <div class="row">
-        <div class="col s12 m8 l8">
+        <div class="col s12 m12 l8">
             <div class="markdown-body">{{ blog.content|safe }}</div>
         </div>
         {% if toc|safe|length > 35 %}
-        <div class="col hide-on-small-only m3 l3">
+        <div class="col hide-on-med-and-down m3 l3">
             <br><br>
             {{ toc|safe }}
         </div>
@@ -63,15 +63,16 @@
 
 <div class="blog-more">
     {% if perivous_blog %}
-        <p>上一篇：<a href="{% url 'blog_detail' perivous_blog.pk %}">{{ perivous_blog.title }}</a></p>
+        <span class="left"><a href="{% url 'blog_detail' perivous_blog.pk %}"><i class="yuaoicon icon-arrow-left"></i> {{ perivous_blog.title }}</a></span>
     {% else %}
-        <p>上一篇：没有了。</p>
+        <span class="left"><i class="yuaoicon icon-forbidden"></i> 没有了</span>
     {% endif %}
     {% if next_blog %}
-        <p>下一篇：<a href="{% url 'blog_detail' next_blog.pk %}">{{ next_blog.title }}</a></p>
+        <span class="right"><a href="{% url 'blog_detail' next_blog.pk %}">{{ next_blog.title }} <i class="yuaoicon icon-arrow-right"></i></a></span>
     {% else %}
-        <p>下一篇：没有了</p>
+        <span class="right">没有了 <i class="yuaoicon icon-forbidden"></i></span>
     {% endif %}
+    <div class="clearfix"></div>
 </div>
 {% endblock content %}
 

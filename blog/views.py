@@ -92,6 +92,7 @@ def blog_detail(request, blog_pk):
     context['perivous_blog'] = Blog.objects.filter(created_time__lt=blog.created_time).first()
     context['next_blog'] = Blog.objects.filter(created_time__gt=blog.created_time).last()
     context['blog'] = blog
+    print(context['next_blog'], context['blog'], context['perivous_blog'])
     context['toc'] = md.toc
 
     response = render(request, 'blog/blog_detail.html', context)

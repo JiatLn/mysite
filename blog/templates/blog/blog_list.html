@@ -13,6 +13,26 @@
 {% endblock header_extends %}
 
 
+{% block banner %}
+<div class="container">
+    <div class="row" id="banner">
+        <canvas id="paopao" width="1000" height="200"></canvas>
+        <h3>
+            <span class="subject">文章归档</span>
+        </h3>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
 
 {% block content %}
 {% block breadcrumb %}
@@ -35,7 +55,7 @@
                         <span class="title">
                             <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
                         </span>
-                        <span class="right read-num">{{ blog.get_read_num }}</span>
+                        <span class="right read-num tooltipped" data-position="top" data-delay="50" data-tooltip="阅读量">{{ blog.get_read_num }}</span>
                     </div>
                 </li>
                 {% empty %}
@@ -49,7 +69,9 @@
 </div>
 {% endblock content %}
 
-{% block script_extends %}{% endblock script_extends %}
+{% block script_extends %}
+<script src="{% static 'js/paopao.js' %}"></script>
+{% endblock script_extends %}
 
 
 

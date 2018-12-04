@@ -66,12 +66,13 @@
             <li class="row">
                 <div class="col l5 m12 s12">
                     <div class="title">
-                        <i class="fa fa-chevron-right grey-text" aria-hidden="true"></i> <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
+                        <i class="yuaoicon icon-title" style="font-size: 20px;"></i>
+                        <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
                     </div>
                     <div class="desc">
                         <i class="fa fa-tag grey-text" aria-hidden="true"></i> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}" style="color: #ffab40;">{{ blog.blog_type }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <i class="fa fa-clock-o grey-text" aria-hidden="true"></i> {{ blog.created_time|date:'Y-m-d' }}&nbsp;&nbsp;&nbsp;&nbsp;
-                    阅读({{ blog.get_read_num }})
+                        <i class="fa fa-clock-o grey-text" aria-hidden="true"></i> {{ blog.created_time|date:'Y-m-d' }}&nbsp;&nbsp;&nbsp;&nbsp;
+                        <i class="yuaoicon icon-fire"></i>{{ blog.get_read_num }}
                     </div>
                 </div>
                 <div class="col l7 m12 s12">
@@ -106,7 +107,7 @@
     </div>
     <div class="col l3 m6 s12">
         <div class="aside">
-            <div class="aside-title"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> 日期归档</div>
+            <div class="aside-title"><i class="yuaoicon icon-date"></i> 日期归档</div>
             <div class="collection">
                 {% for blog_date, blog_count in blog_dates %}
                     <a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}" class="collection-item"><span class="badge">{{ blog_count }}</span>{{ blog_date|date:'Y年m月' }}</a>
@@ -116,7 +117,7 @@
             </div>
         </div>
         <div class="aside">
-            <div class="aside-title"><i class="fa fa-tags" aria-hidden="true"></i> 文章分类</div>
+            <div class="aside-title"><i class="yuaoicon icon-tags"></i> 文章分类</div>
             <ul class="tags-list">
                 {% for blog_type in blog_types %}
                     <li class="chip"><a href="{% url 'blogs_with_type' blog_type.pk %}">{{ blog_type.type_name }}</a></li>
