@@ -32,6 +32,29 @@ a:hover {
 }
 
 
+#banner > div > h5, #banner > div > span {
+    font-family: "Open Sans","Microsoft Jhenghei","Microsoft Yahei",sans-serif;
+    color: #fff;
+    text-shadow: 0px 0px 9px #ff0000c4;
+
+    
+}
+
+
+#banner > div >  h2 {
+    font-family: "Open Sans","Microsoft Jhenghei","Microsoft Yahei",sans-serif;
+    background-image: linear-gradient(to bottom, #ffffff, #80fff4);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+}
+
+
+
+
+
+
+
+
 
 nav {
     /*background: url(../images/bg.jpg) center center / cover no-repeat rgb(34, 34, 34);*/
@@ -163,3 +186,7 @@ footer > ul {
 
 
 
+#paopao {
+    z-index: 1;
+    position: absolute;
+}

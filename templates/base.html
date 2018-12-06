@@ -52,14 +52,15 @@
     </div>
     {% endblock %}
     {% block banner %}
-    <div class="container hide-on-small-only">
+    <div class="container">
         <div class="row" id="banner">
+            <canvas id="paopao"></canvas>
             <div class="col m9 s12">
-                <h2 class="header center-on-small-only blue-text text-lighten-3" style="margin: 4% 0 0 4%;">JiatLn</h2>
-                <h5 class="light center-on-small-only" style="margin: 4% 0 0 4%; color: #26a69a;">O ever youthful, O ever weeping.</h5>
+                <h2 class="header center-on-small-only" style="margin: 24px 0 0 10px;">JiatLn</h2>
+                <h5 class="light center-on-small-only" style="margin: 20px 0 -20px 10px;">O ever youthful, O ever weeping.</h5>
             </div>
-            <div class="col m3" style="margin-top: 20px;">
-                <p class="blue-text">永远年轻，永远热泪盈眶。</p>
+            <div class="col m3 s12" style="margin-top: 30px; text-align: center;">
+                <span>永远年轻，永远热泪盈眶。</span>
             </div>
         </div>
         <div class="divider"></div>
@@ -89,6 +90,13 @@
 
     $(document).ready(function(){
       $('.parallax').parallax();
+    });
+    // canvas
+    $(document).ready(function(){
+      var can_width = $('#banner').width();
+      var can_height = $('#banner').height();
+      $('#paopao').width(can_width)
+      $('#paopao').height(can_height)
     });
 </script>
 {% block script_extends %}{% endblock script_extends %}

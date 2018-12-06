@@ -173,3 +173,10 @@
     margin-top: 0;
     border: none;
 }
+
+
+
+#banner {
+    background: url(../../static/images/sky.jpg) center center / cover no-repeat rgb(34, 34, 34);
+    /*background: url(../../static/images/home_bg.jpg) center center / cover no-repeat rgb(34, 34, 34);*/
+}

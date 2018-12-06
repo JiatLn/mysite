@@ -22,6 +22,7 @@
 .blog-list .title a {
     color: #394a58;
     max-width: 80%;
+    font-family: "Open Sans","Microsoft Jhenghei","Microsoft Yahei",sans-serif;
 
 }
 
@@ -55,7 +56,3 @@
 }
 
 
-#paopao {
-    z-index: 1;
-    position: absolute;
-}
