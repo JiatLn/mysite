@@ -10,7 +10,7 @@
     {# https://www.hcharts.cn/docs/start-helloworld #}
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/blog/blog-list.css' %}"> -->
-    <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+    <script src="//cdn.hcharts.cn/highcharts/highcharts.js"></script>
     <!-- <script src="https://img.hcharts.cn/highcharts/themes/avocado.js"></script> -->
 {% endblock header_extends %}
 
@@ -132,10 +132,9 @@
         <div class="aside">
             <div class="aside-title"><i class="fa fa-link" aria-hidden="true"></i> 友情链接</div>
             <div class="collection">
-                <a href="#!" class="collection-item">虚位以待</a>
-                <a href="#!" class="collection-item">虚位以待</a>
-                <a href="#!" class="collection-item">虚位以待</a>
-                <a href="#!" class="collection-item">虚位以待</a>
+                {% for fl in friendlinks %}
+                    <a href="{{ fl.link_address }}" class="collection-item">{{ fl.link_name }}</a>
+                {% endfor %}
             </div>
         </div>
     </div>

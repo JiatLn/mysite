@@ -11,11 +11,12 @@ import markdown
 from blog.models import Blog
 from blog.views import get_blog_list_common_data
 from read_counter.utils import get_a_week_read_data
-
+from manager.models import FriendLink
 
 
 def home(request):
     recent_blogs = Blog.objects.all().order_by('-last_updated_time')[:5]
+    friendlinks = FriendLink.objects.all().order_by('add_time')[:5]
     read_date, read_count = get_a_week_read_data()
 
     blogs = Blog.objects.all()
@@ -33,9 +34,8 @@ def home(request):
     context['recent_blogs'] = recent_blogs
     context['read_date'] = read_date
     context['read_count'] = read_count
+    context['friendlinks'] = friendlinks
     return render(request, 'home.html', context)
-
-
 
 
 def about(request):

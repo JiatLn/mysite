@@ -189,4 +189,5 @@ footer > ul {
 #paopao {
     z-index: 1;
     position: absolute;
+    display: block;
 }
