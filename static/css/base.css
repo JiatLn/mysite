@@ -18,7 +18,7 @@ a:hover {
 
 
 .container {
-    max-width: 1000px;
+    max-width: 1280px;
 }
 
 
@@ -43,7 +43,7 @@ a:hover {
 
 #banner > div >  h2 {
     font-family: "Open Sans","Microsoft Jhenghei","Microsoft Yahei",sans-serif;
-    background-image: linear-gradient(to bottom, #ffffff, #80fff4);
+    background-image: linear-gradient(to bottom, #fff, #80fff4);
      -webkit-background-clip: text;
      -webkit-text-fill-color: transparent;
 }

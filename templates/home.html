@@ -50,9 +50,9 @@
             <div class="divider" style="margin: 4% 10%;"></div>
             <ul style="margin: 8% 10%;" NAME="up">
                 <li><strong>JiatLn</strong>の个人博客</li>
-                <li>已上线<div class="clock" style="display: inline-block;"></div></li>
+                <li>已上线 <div class="clock" style="display: inline-block;"></div></li>
                 <li><span>人生苦短，我用Python 3.</span></li>
-                <li><i class="fa fa-envelope-o" aria-hidden="true"></i>  <a href="mailto:lne128gene980@163.com">写信给我</a></li>
+                <li><i class="fa fa-envelope-o" aria-hidden="true"></i>  <a href="mailto:lne128gene980@163.com">给我写信</a></li>
             </ul>
             <div class="clearfix"></div>
         </div>
@@ -133,7 +133,9 @@
             <div class="aside-title"><i class="fa fa-link" aria-hidden="true"></i> 友情链接</div>
             <div class="collection">
                 {% for fl in friendlinks %}
-                    <a href="{{ fl.link_address }}" class="collection-item">{{ fl.link_name }}</a>
+                    {% if fl.is_public %}
+                        <a href="{{ fl.link_address }}" class="collection-item">{{ fl.link_name }}</a>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
