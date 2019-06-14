@@ -40,12 +40,6 @@ def home(request):
 
 def about(request):
     context = {}
-    about = Blog.objects.get(title='关于本站')
-    about.content = markdown.markdown(about.content,
-                                  extensions=[
-                                     'markdown.extensions.extra',
-                                     'markdown.extensions.codehilite',
-                                     'markdown.extensions.toc',
-                                  ])
+    about = '这里是关于，施工中。。。'
     context['about'] = about
     return render(request, 'about.html', context)
