@@ -21,14 +21,11 @@ def home(request):
 
     blogs = Blog.objects.all()
     for blog in blogs:
-        blog.content = markdown.markdown(blog.content,
-                                  extensions=[
+        blog.content = markdown.markdown(blog.content, extensions=[
                                      'markdown.extensions.extra',
                                      'markdown.extensions.codehilite',
                                      'markdown.extensions.toc',
-                                     
-                                  ])
-
+                                ])
     context = {}
     context = get_blog_list_common_data(request, blogs)
     context['recent_blogs'] = recent_blogs

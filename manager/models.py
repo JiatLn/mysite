@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class FriendLink(models.Model):
     link_name = models.CharField(max_length=12)

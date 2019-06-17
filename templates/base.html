@@ -56,8 +56,10 @@
         <div class="row" id="banner">
             <canvas id="paopao"></canvas>
             <div class="col m9 s12">
-                <h2 class="header center-on-small-only" style="margin: 24px 0 0 10px;">JiatLn</h2>
-                <h5 class="light center-on-small-only" style="margin: 20px 0 -20px 10px;">O ever youthful, O ever weeping.</h5>
+                <h2 class="header center-on-small-only" style="margin: 50px 0 40px 16px;">JiatLn</h2>
+                <span id="hitokoto" class="light center-on-small-only" style="margin: 20px 0 -20px 10px;">
+                    O ever youthful, O ever weeping.
+                </span>
             </div>
             <div class="col m3 s12" style="margin-top: 30px; text-align: center;">
                 <span>永远年轻，永远热泪盈眶。</span>
@@ -99,5 +101,7 @@
       $('#paopao').height(can_height)
     });
 </script>
+<!-- 新 API 方法， 十分简洁 -->
+<script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
 {% block script_extends %}{% endblock script_extends %}
 </html>

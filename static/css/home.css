@@ -98,6 +98,7 @@
     box-shadow: 0 1px 2px #aaa;
     /*box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);*/
     font-family: Play;
+    min-height: 640px;
 
 }
 
@@ -180,6 +181,7 @@
 
 
 #banner {
-    background: url(../../static/images/sky.jpg) center center / cover no-repeat rgb(34, 34, 34);
+    /*background: url(../../static/images/sky.jpg) center center / cover no-repeat rgb(34, 34, 34);*/
+    background: url(../../static/images/sky2.jpg) center center / cover no-repeat rgb(34, 34, 34);
     /*background: url(../../static/images/home_bg.jpg) center center / cover no-repeat rgb(34, 34, 34);*/
 }

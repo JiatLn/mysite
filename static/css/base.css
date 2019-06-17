@@ -36,16 +36,24 @@ a:hover {
     font-family: "Open Sans","Microsoft Jhenghei","Microsoft Yahei",sans-serif;
     color: #fff;
     text-shadow: 0px 0px 9px #ff0000c4;
-
-    
 }
 
 
+/* 定义字体 */
+@font-face{
+  font-family: "AlexBrush Regular";
+  src: url("../fonts/AlexBrush-Regular.ttf") format('truetype');
+}
+
+
+
 #banner > div >  h2 {
-    font-family: "Open Sans","Microsoft Jhenghei","Microsoft Yahei",sans-serif;
-    background-image: linear-gradient(to bottom, #fff, #80fff4);
-     -webkit-background-clip: text;
-     -webkit-text-fill-color: transparent;
+    font-family: "AlexBrush Regular", "Open Sans","Microsoft Jhenghei","Microsoft Yahei",sans-serif;
+    color: #fff;
+    font-weight: 300;
+    // background-image: linear-gradient(to bottom, #fff, #80fff4);
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
 }
 
 
