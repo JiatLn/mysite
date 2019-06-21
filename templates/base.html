@@ -85,6 +85,32 @@
 <div id="toTop" class="hidden">
     <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
 </div>
+<!--live2d-->
+<script src="{% static 'js/live2d/L2Dwidget.min.js' %}"></script>
+<script type="text/javascript">
+  L2Dwidget.init({
+    model: {
+      jsonPath: "{% static 'js/live2d/tororo/assets/tororo.model.json' %}",
+    },
+    display: {
+      superSample: 2,
+      width: 100,
+      height: 100,
+      position: 'right',
+      hOffset: 80,
+      vOffset: 10,
+    },
+    mobile: {
+      show: true,
+      scale: 1,
+      motion: true,
+    },
+    react: {
+      opacityDefault: 0.8,
+      opacityOnHover: 0.2,
+    }
+  })
+</script>
 {% endblock footer %}
 </body>
 <script>
