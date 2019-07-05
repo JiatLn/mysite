@@ -1,6 +1,6 @@
 body {
     /*background-color: #f6f4f1;*/
-    background: url(../images/body-bg.png) rgb(242, 240, 236);
+    /*background: url(../images/body-bg.png) rgb(242, 240, 236);*/
     /*background: url(../images/bgi.jpg) center center / cover no-repeat rgb(34, 34, 34);*/
 }
 
@@ -113,9 +113,79 @@ main {
     min-height: 1000px;
 }
 
+/*footer*/
 footer > ul {
     width: 42%;
+    font-size: 15px;
 }
+footer {
+    min-height: 100px;
+    _height: 15px;
+    position: absolute;
+    margin: 0;
+    margin-top: 20vh;
+    left: 0;
+    right: 0;
+    padding: 17px 0 27px;
+    text-align: center;
+    color: #888;
+}
+footer {
+    background-color: #fff;
+    text-align: center;
+    position: relative;
+    top: 150px;
+    z-index: -1;
+}
+footer footer-background {
+    bottom: 0;
+    bottom: 7.25rem;
+    left: 0;
+    height: 18rem;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    transform: translate3d(0,0,0);
+}
+footer footer-background .clouds {
+    background-repeat: repeat-x!important;
+    background: url(https://raw.githubusercontent.com/BNDong/Cnblogs-Theme-SimpleMemory/master/img/clouds.png) repeat-x;
+    background-size: 225em 15em;
+    position: absolute;
+    top: 3em;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+footer footer-background .background {
+    background-repeat: repeat-x!important;
+    background: url(https://raw.githubusercontent.com/BNDong/Cnblogs-Theme-SimpleMemory/master/img/background.png) repeat-x;
+    background-size: 225em 21.313em;
+    position: absolute;
+    top: 4em;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+footer footer-background .foreground {
+    background-repeat: repeat-x!important;
+    background: url(https://raw.githubusercontent.com/BNDong/Cnblogs-Theme-SimpleMemory/master/img/foreground.png) repeat-x;
+    background-size: 225em 15em;
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+footer figure {
+    margin: 0 auto;
+}
+
+
+
+
+
+
 
 
 /*自定义标签样式*/
