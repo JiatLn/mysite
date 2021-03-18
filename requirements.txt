@@ -3,6 +3,6 @@ django-js-asset==1.1.0
 django-mdeditor==0.1.9
 django-pure-pagination==0.3.0
 Markdown==3.0.1
-Pillow==5.1.0
+Pillow==8.1.1
 Pygments==2.2.0
 pytz==2018.4
